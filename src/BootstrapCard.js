@@ -22,7 +22,7 @@ const BootstrapCard = ({ imageUrl, description }) => {
         onMouseLeave={() => setIsHovered(false)}
         style={{ position: 'relative' }}
       >
-      <Card.Img variant="top" src={`https://drive.google.com/thumbnail?id=${fileId}`} alt={description} style={{ objectFit: 'contain', width: '100%', height: '100%' }} />
+      <Card.Img variant="top" src={`https://drive.google.com/thumbnail?id=${fileId}`} referrerPolicy="no-referrer" alt={description} style={{ objectFit: 'contain', width: '100%', height: '100%' }} />
       {isHovered && (
           <div style={{
             position: 'absolute',
