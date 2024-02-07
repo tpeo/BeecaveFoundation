@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import ImageGallery from 'react-image-gallery';
-// import 'react-image-gallery/styles/css/image-gallery.css';
+import 'react-image-gallery/styles/css/image-gallery.css';
 
 function extractImageId(imageUrl) {
   const parts = imageUrl.split('id=');
@@ -16,7 +16,6 @@ const BootstrapCard = ({ imageUrl, description }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    // <Card className="card" style={{ width: 'auto', height: 'auto' }}> <Card
     <Card className="card" style={{ width: 'auto', height: 'auto' }}>
       <div 
         onMouseEnter={() => setIsHovered(true)}

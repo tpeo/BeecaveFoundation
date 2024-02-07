@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-//import CardGroup from 'react-bootstrap/CardGroup';
-import BootstrapCard from './BootstrapCard'; // assuming this is the file path to your BootstrapCard component
-//import ImageGallery from 'react-image-gallery';
-import 'react-image-gallery/styles/css/image-gallery.css';
+import CardGroup from 'react-bootstrap/CardGroup';
+import BootstrapCard from './BootstrapCard'; 
+import ImageGallery from 'react-image-gallery';
+//import 'react-image-gallery/styles/css/image-gallery.css';
+import './Gallery.css';
 
 
 const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
-const ranges = '2:3'; 
+const ranges = '2:12'; 
 const apiKey = 'AIzaSyD5ticeELEJdCeWnR8Zefb4lgF2kSRJPtM'; 
 const ROWS= 'ROWS';
 
@@ -24,7 +25,6 @@ const Gallery = () => {
             imageUrl: row[2],
             description: row[3],
           }));
-          // console.log(imageUrl);
           console.log(fetchedArtworks);
           setArtworks(fetchedArtworks);
           console.log(artworks);
@@ -40,10 +40,11 @@ const Gallery = () => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-          artworks.map((artwork) => (
-            <BootstrapCard key= {artwork.imageUrl} {...artwork} />
-          ))
-          //<h1>hi</h1>
+    <div className="gallery-container">
+    {artworks.map((artwork, index) => (
+      <BootstrapCard key={artwork.description} {...artwork} />
+    ))}
+    </div>
   );
 };
 
