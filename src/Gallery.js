@@ -7,7 +7,7 @@ import 'react-image-gallery/styles/css/image-gallery.css';
 
 const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
 const ranges = '2:3'; 
-const apiKey = 'AIzaSyD5ticeELEJdCeWnR8Zefb4lgF2kSRJPtM'; 
+const apiKey = ''; 
 const ROWS= 'ROWS';
 
 const Gallery = () => {
