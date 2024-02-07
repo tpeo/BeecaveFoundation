@@ -8,7 +8,8 @@ import './Gallery.css';
 
 const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
 const ranges = '2:12'; 
-const apiKey = ''; 
+const apiKey = process.env.REACT_APP_API_KEY;
+console.log(apiKey);
 const ROWS= 'ROWS';
 
 const Gallery = () => {
