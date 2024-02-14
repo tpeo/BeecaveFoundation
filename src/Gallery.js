@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ResponsiveMasonry from 'react-responsive-masonry';
+import { Link, useNavigate } from 'react-router-dom';
 import './Gallery.css'; 
+import Button from 'react-bootstrap/Button';
 
 const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
 const ranges = '2:100'; 
@@ -15,6 +17,8 @@ const extractImageId = (imageUrl) => {
 
 const Gallery = () => {
   const [artworks, setArtworks] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +48,7 @@ const Gallery = () => {
     <div className="gallery-container">
       <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
         {artworks.map((artwork) => (
-          <div key={artwork.key} className="gallery-item">
+          <Button key={artwork.key} onClick={() => navigate(`/details/${artwork.imageId}`, {state: {imageId: artwork.imageId, description:artwork.description}})} className="gallery-item">
             <img
               src={`https://drive.google.com/thumbnail?id=${artwork.imageId}`}
               alt={artwork.description}
@@ -53,9 +57,9 @@ const Gallery = () => {
             <div className="image-overlay">
               {artwork.description}
             </div>
-          </div>
+          </Button>
         ))}
-      </ResponsiveMasonry>
+      </ResponsiveMasonry> 
     </div>
   );
 };
