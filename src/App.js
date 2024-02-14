@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
               <Routes>
                   <Route path={"/"} element={<Home />} />
-                  <Route path="/Exhibition" element={<Exhibition />} /> 
+                  <Route path="/Exhibition/:sheetTitle" element={<Exhibition />} /> 
                   <Route path="/details/:imageId" element={<DetailsPage/>} /> 
               </Routes> 
       </BrowserRouter>

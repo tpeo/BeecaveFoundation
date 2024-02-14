@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ResponsiveMasonry from 'react-responsive-masonry';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import './Gallery.css'; 
 import Button from 'react-bootstrap/Button';
 
 const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
-const ranges = '2:100'; 
+const ranges = `2:100`; 
 const apiKey = process.env.REACT_APP_API_KEY;
 const ROWS= 'ROWS';
 
@@ -17,13 +17,15 @@ const extractImageId = (imageUrl) => {
 
 const Gallery = () => {
   const [artworks, setArtworks] = useState([]);
-
+  const { sheetTitle } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?ranges=${ranges}&key=${apiKey}&majorDimension=${ROWS}`);
+        const title = `${sheetTitle}!${ranges}`
+        console.log(title)
+        const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?ranges=${sheetTitle}!${ranges}&key=${apiKey}&majorDimension=${ROWS}`);
         const data = await response.json();
         if (data.valueRanges && data.valueRanges[0].values) {
           const fetchedArtworks = data.valueRanges[0].values.map((row, index) => ({
