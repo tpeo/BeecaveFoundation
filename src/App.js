@@ -1,11 +1,25 @@
 import './App.css';
 import Gallery from './Gallery';
+import React, { useRef } from 'react';
+import {
+    BrowserRouter,
+    Routes,
+    Route
+} from "react-router-dom";
+import Home from './pages/Home.js';
+import Exhibition from './pages/Exhibition.js';
+import DetailsPage from './pages/DetailsPage.js';
+
 
 function App() {
   return (
-    <div className="App">
-      <Gallery />
-    </div>
+    <BrowserRouter>
+              <Routes>
+                  <Route path={"/"} element={<Home />} />
+                  <Route path="/Exhibition" element={<Exhibition />} /> 
+                  <Route path="/details/:imageId" element={<DetailsPage/>} /> 
+              </Routes> 
+      </BrowserRouter>
   );
 }
 
