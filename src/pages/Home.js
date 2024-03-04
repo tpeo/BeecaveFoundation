@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Gallery from '../Gallery';
 import Exhibition from './Exhibition.js';
+import ExhibitionLink from '../ExhibitionLink.js';
 import { Link } from 'react-router-dom';
 
 const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
@@ -35,11 +36,17 @@ const Home = () => {
 
     return (
         <div className='container'>
-            <h1> Beecave </h1>
+            <img src='' alt='beecave_main_img'></img>
+            <h1> Beecave Arts Foundation</h1>
             {
                 (pages) && (
                     pages.map((page) => (
-                        <h1> <Link to={`/Exhibition/${page.title}`}>{"Exhibition " + page.title}</Link> </h1>
+                        <ExhibitionLink
+                          subtitle=''
+                          title={page.title}
+                          date='Jan 1 - Feb 1'
+                          description='lorem ipsum....'
+                        ></ExhibitionLink>
                     ))
                 )
             }
