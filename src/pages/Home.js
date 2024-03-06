@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Gallery from '../Gallery';
-import Exhibition from './Exhibition.js';
 import ExhibitionLink from '../ExhibitionLink.js';
 import { Link } from 'react-router-dom';
+import { Box, Grid, Typography } from '@mui/material';
 
 const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
 const ranges = '2:100'; 
@@ -37,12 +36,18 @@ const Home = () => {
     return (
         <div className='container'>
             <img src='' alt='beecave_main_img'></img>
-            <h1> Beecave Arts Foundation</h1>
+            <Typography sx={{paddingLeft: '5%'}} variant='h3'> Beecave Arts Foundation</Typography>
+            <Typography sx={{paddingRight: '40%', paddingLeft: '5%'}}>
+              Established in 2010, Bee Cave Arts Foundation invigorates the community and visitor experience through diverse public art initiatives, including the Bee Cave Sculpture Park, The Hive art center, and ongoing exhibitions and classes.
+            </Typography>
+            <h1> <Link to="/Exhibition">Current Exhibition</Link> </h1>
+            <Grid>
             {
                 (pages) && (
                     pages.map((page) => (
                         <ExhibitionLink
-                          subtitle=''
+                          key={page.title}
+                          subtitle='Gallery Exhibition'
                           title={page.title}
                           date='Jan 1 - Feb 1'
                           description='lorem ipsum....'
@@ -50,7 +55,8 @@ const Home = () => {
                     ))
                 )
             }
-            <h1> <Link to="/Exhibition">Current Exhibition</Link> </h1>
+            </Grid>
+            
         </div>
     )
 
