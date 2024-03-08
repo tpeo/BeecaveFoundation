@@ -9,18 +9,21 @@ import {
   CardActions,
   Grid
 } from '@mui/material'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function ExhibitionLink({subtitle, title, date, description, order}) {
 
-  const imageBlock = <Box sx={{ display: 'flex', direction: 'column', justifyContent: "space-between", pl: 1, pb: 1 }}>
+  const imageBlock = <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: "space-between", pl: 1, pb: 1 }}>
       <CardMedia
       component="img"
-      sx={{ width: 151 }}
-      image="/static/images/cards/live-from-space.jpg"
+      // sx={{ width: 151 }}
+      image="/images/dummy.png"
       alt="Live from space album cover"
     />
     <CardActions>
       <Link to={`/Exhibition/${title}`} size="small">Visit</Link>
+      <ArrowForwardIcon></ArrowForwardIcon>
     </CardActions>
     </Box>
 
@@ -48,15 +51,21 @@ export default function ExhibitionLink({subtitle, title, date, description, orde
        {
         (order) ? 
         <>
-            {/* <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'space-between'}}> */}
+          <Grid item xs={8}> 
             {imageBlock}
+          </Grid>
+          <Grid item xs={4}>
             {textBlock}
-            {/* </Box> */}
+          </Grid>
         </>
 
            : <>
+          <Grid item xs={8}> 
             {textBlock}
+          </Grid>
+          <Grid item xs={4}>
             {imageBlock}
+          </Grid>
            </>
 
        }
