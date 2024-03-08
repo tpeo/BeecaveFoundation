@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ExhibitionLink from '../ExhibitionLink.js';
 import { Link } from 'react-router-dom';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography, Card, CardMedia } from '@mui/material';
 
 const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
 const ranges = '2:100'; 
@@ -35,12 +35,28 @@ const Home = () => {
 
     return (
         <div className='container'>
-            <img src='' alt='beecave_main_img'></img>
-            <Typography sx={{paddingLeft: '5%'}} variant='h3'> Beecave Arts Foundation</Typography>
-            <Typography sx={{paddingRight: '40%', paddingLeft: '5%'}}>
+            <Card>
+              <div style={{ position: "relative" }}>
+                <CardMedia component="img" image={'/images/frog.jpeg'} title="frog" alt="frog"/> 
+                  <Typography sx={{position: "absolute", color: "white",bottom: "5%",left: "5%"
+                  //,transform: "translateX(-50%)",
+                  }} variant='h3'> Beecave Arts Foundation</Typography>
+              </div>
+            </Card>
+
+            <Typography variant='h5' sx={{paddingY: '5%', paddingRight: '40%', paddingLeft: '5%'}}>
               Established in 2010, Bee Cave Arts Foundation invigorates the community and visitor experience through diverse public art initiatives, including the Bee Cave Sculpture Park, The Hive art center, and ongoing exhibitions and classes.
             </Typography>
-            <h1> <Link to="/Exhibition">Current Exhibition</Link> </h1>
+
+            <ExhibitionLink
+                key="Current Exhibition"
+                subtitle='Current Exhibition'
+                title="Current Exhibition"
+                date='Jan 1 - Feb 1'
+                description='lorem ipsum....'
+                order={false}
+            ></ExhibitionLink>
+            <Typography variant='h6' sx={{paddingLeft: '5%'}}>Upcoming Exhibitions</Typography>
             <Grid>
             {
                 (pages) && (
@@ -51,6 +67,7 @@ const Home = () => {
                           title={page.title}
                           date='Jan 1 - Feb 1'
                           description='lorem ipsum....'
+                          order={true}
                         ></ExhibitionLink>
                     ))
                 )
