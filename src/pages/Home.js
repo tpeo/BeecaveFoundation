@@ -10,6 +10,7 @@ const ROWS= 'ROWS';
 
 const Home = () => {
     const [pages, setPages] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
           try {
@@ -37,7 +38,13 @@ const Home = () => {
         <div className='container'>
             <Card>
               <div style={{ position: "relative" }}>
-                <CardMedia component="img" image={'/images/frog.jpeg'} title="frog" alt="frog"/> 
+                <CardMedia component="img" image={'/images/frog.jpeg'} title="frog" alt="frog" /> 
+                <div style={{position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      backgroundColor: 'rgba(0, 0, 0, 0.5)'}} ></div>
                   <Typography sx={{position: "absolute", color: "white",bottom: "5%",left: "5%"
                   //,transform: "translateX(-50%)",
                   }} variant='h3'> Beecave Arts Foundation</Typography>
