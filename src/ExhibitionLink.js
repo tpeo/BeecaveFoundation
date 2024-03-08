@@ -21,18 +21,14 @@ export default function ExhibitionLink({subtitle, title, date, description, orde
       image="/images/dummy.png"
       alt="Live from space album cover"
     />
-    <CardActions>
-      <Link to={`/Exhibition/${title}`} size="small">Visit</Link>
-      <ArrowForwardIcon></ArrowForwardIcon>
-    </CardActions>
     </Box>
 
-  const textBlock = <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+  const textBlock = <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: 150 }}>
   <CardContent sx={{ flex: '1 0 auto' }}>
     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
       {subtitle}
     </Typography>
-    <Typography variant="h5" component="div">
+    <Typography variant="h4" component="div">
       {title}
     </Typography>
     <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -42,6 +38,10 @@ export default function ExhibitionLink({subtitle, title, date, description, orde
       {description}
     </Typography>     
   </CardContent>
+  <CardActions>
+    <ArrowForwardIcon></ArrowForwardIcon>
+    <Link to={`/Exhibition/${title}`} size="small">Visit Exhibition</Link>
+  </CardActions>
 </Box>
 
   return (
