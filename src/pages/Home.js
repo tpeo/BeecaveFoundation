@@ -46,7 +46,6 @@ const Home = () => {
                       height: '100%',
                       backgroundColor: 'rgba(0, 0, 0, 0.5)'}} ></div>
                   <Typography sx={{position: "absolute", color: "white",bottom: "5%",left: "5%", width: '25%'
-                  //,transform: "translateX(-50%)",
                   }} variant='h3'> Bee Cave Arts Foundation</Typography>
               </div>
             </Card>
