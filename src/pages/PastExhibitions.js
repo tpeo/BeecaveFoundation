@@ -9,7 +9,7 @@ const ranges = '2:100';
 const apiKey = process.env.REACT_APP_API_KEY;
 const ROWS= 'ROWS';
 
-const Home = () => {
+const PastExhibitions = () => {
     const [pages, setPages] = useState([]);
 
     useEffect(() => {
@@ -61,4 +61,4 @@ const Home = () => {
     )
 
 }
-export default Home;
+export default PastExhibitions;
