@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ExhibitionLink from '../ExhibitionLink.js';
+import NavigationBar from '../components/navbar.js';
 import { Link } from 'react-router-dom';
 import { Box, Grid, Typography, Card, CardMedia } from '@mui/material';
 
@@ -36,6 +37,7 @@ const Home = () => {
 
     return (
         <div className='container'>
+          <NavigationBar/>
             <Card>
               <div style={{ position: "relative" }}>
                 <CardMedia component="img" image={'/images/frog.jpeg'} title="frog" alt="frog" /> 
