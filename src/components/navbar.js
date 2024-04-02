@@ -43,19 +43,19 @@ function NavigationBar() {
     },
   });
 
-  const muiTheme = getMuiTheme({
-    palette: {
-      textColor: Colors.darkBlack,
-      primary1Color: Colors.white,
-      primary2Color: Colors.indigo700,
-      accent1Color: Colors.redA200,
-      pickerHeaderColor: Colors.darkBlack,
-      alternateTextColor: Colors.redA200
-    },
-    appBar: {
-      height: 60,
-    },
-  });
+  // const muiTheme = getMuiTheme({
+  //   palette: {
+  //     textColor: Colors.darkBlack,
+  //     primary1Color: Colors.white,
+  //     primary2Color: Colors.indigo700,
+  //     accent1Color: Colors.redA200,
+  //     pickerHeaderColor: Colors.darkBlack,
+  //     alternateTextColor: Colors.redA200
+  //   },
+  //   appBar: {
+  //     height: 60,
+  //   },
+  // });
 
   return (
     <ThemeProvider theme={darkTheme}>
