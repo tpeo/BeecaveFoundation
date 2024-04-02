@@ -10,7 +10,6 @@ import {
   Grid
 } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export default function ExhibitionLink({subtitle, title, date, description, order}) {
 
@@ -23,7 +22,7 @@ export default function ExhibitionLink({subtitle, title, date, description, orde
     />
     </Box>
 
-  const textBlock = <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: 150 }}>
+  const textBlock = <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: 200 }}>
   <CardContent sx={{ flex: '1 0 auto' }}>
     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
       {subtitle}
@@ -40,7 +39,15 @@ export default function ExhibitionLink({subtitle, title, date, description, orde
   </CardContent>
   <CardActions>
     <ArrowForwardIcon></ArrowForwardIcon>
-    <Link to={`/Exhibition/${title}`} size="small">Visit Exhibition</Link>
+    <Link to={`/Exhibition/${title}`} style={{
+        textDecoration: 'none',
+        color: 'inherit', // This ensures the link inherits the color from its parent
+        transition: 'text-decoration 0.3s ease', 
+        // Smooth transition for the underline
+        }} 
+        onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
+        onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+        size="small"> Visit Exhibition</Link>
   </CardActions>
 </Box>
 
