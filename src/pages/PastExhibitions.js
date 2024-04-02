@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ExhibitionLink from '../ExhibitionLink.js';
 import NavigationBar from '../components/navbar.js';
+import PastExhibitionIcon from '../components/PastExhibitionIcon.js';
+import { useLocation } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
 import { Box, Grid, Typography, Card, CardMedia } from '@mui/material';
 
@@ -47,11 +50,7 @@ const PastExhibitions = () => {
             {
                 (pages) && (
                     pages.map((page) => (
-                        <ExhibitionLink
-                          key={page.title}
-                          description={page.title}
-                          order={true}
-                        ></ExhibitionLink>
+                        <PastExhibitionIcon sheetTitle={page}></PastExhibitionIcon>
                     ))
                 )
             }
