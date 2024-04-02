@@ -9,6 +9,7 @@ import {
 import Home from './pages/Home.js';
 import Exhibition from './pages/Exhibition.js';
 import DetailsPage from './pages/DetailsPage.js';
+import PastExhibitions from './pages/PastExhibitions.js';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                   <Route path={"/"} element={<Home />} />
                   <Route path="/Exhibition/:sheetTitle" element={<Exhibition />} /> 
                   <Route path="/details/:imageId" element={<DetailsPage/>} /> 
+                  <Route path="/PastExhibitions" element={<PastExhibitions/>} /> 
               </Routes> 
       </BrowserRouter>
   );
