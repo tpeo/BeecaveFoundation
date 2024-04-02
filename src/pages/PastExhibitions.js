@@ -50,7 +50,7 @@ const PastExhibitions = () => {
             {
                 (pages) && (
                     pages.map((page) => (
-                        <PastExhibitionIcon sheetTitle={page}></PastExhibitionIcon>
+                        <PastExhibitionIcon sheetTitle={page.title}></PastExhibitionIcon>
                     ))
                 )
             }

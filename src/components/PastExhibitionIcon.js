@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useLocation } from 'react-router-dom';
 
 const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
-const ranges = `2:3`; 
+const ranges = `2:2`; 
 const apiKey = process.env.REACT_APP_API_KEY;
 const ROWS= 'ROWS';
 
@@ -49,7 +49,7 @@ export default function Gallery({sheetTitle}){
   return (
     <div className="gallery-container">
         {artworks.map((artwork) => (
-          <Button key={artwork.key} onClick={() => navigate(`/Exhibition/${sheetTitle}`, )} className="gallery-item">
+          <Button key={artwork.key} onClick={() => navigate(`/Exhibition/${sheetTitle}` )} className="gallery-item">
             <img
               src={`https://drive.google.com/thumbnail?id=${artwork.imageId}`}
               alt={artwork.description}
