@@ -11,13 +11,13 @@ import {
 } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-export default function ExhibitionLink({subtitle, title, date, description, order}) {
+export default function ExhibitionLink({subtitle, title, date, description, image, order}) {
 
   const imageBlock = <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: "space-between", pl: 1, pb: 1 }}>
       <CardMedia
       component="img"
       // sx={{ width: 151 }}
-      image="/images/dummy.png"
+      image={`https://drive.google.com/thumbnail?id=${image}`}
       alt="Live from space album cover"
     />
     </Box>

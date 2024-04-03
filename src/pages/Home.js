@@ -4,26 +4,38 @@ import NavigationBar from '../components/navbar.js';
 import { Link } from 'react-router-dom';
 import { Box, Grid, Typography, Card, CardMedia } from '@mui/material';
 
-const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
-const ranges = '2:100'; 
+const spreadsheetId = '1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w'; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
+const ranges = 'B2:F100'; // might need to set this
 const apiKey = process.env.REACT_APP_API_KEY;
 const ROWS= 'ROWS';
+const sheetTitle = 'Exhibitions';
+
+const extractImageId = (imageUrl) => {
+  const parts = imageUrl.split('id=');
+  const id = parts[1];
+  return id;
+};
 
 const Home = () => {
-    const [pages, setPages] = useState([]);
+    const [exhibitions, setExhibitions] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/?&key=${apiKey}`);
+            const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?ranges=${sheetTitle}!${ranges}&key=${apiKey}&majorDimension=${ROWS}`);
             const data = await response.json();
-            if (data.sheets.length > 0) {
-              const pages = data.sheets.map((sheet, index) => ({
-                sheetId: sheet.properties.sheetId,
-                title: sheet.properties.title,
-                key: index.toString(),
-              }));
-              setPages(pages);
+            console.log(data.valueRanges[0].values)
+            if (data.valueRanges[0].values.length > 0) {
+              const exhibitions = data.valueRanges[0].values.map((e, index) => {
+                return {
+                  name: e[0],
+                  start: e[1],
+                  end: e[2],
+                  image: extractImageId(e[3]),
+                  description: e[5]
+                }
+              });
+              setExhibitions(exhibitions);
             } else {
               console.log('No data found.');
             }
@@ -62,19 +74,21 @@ const Home = () => {
                 title="Current Exhibition"
                 date='Jan 1 - Feb 1'
                 description='lorem ipsum....'
+                image="/images/dummy.png"
                 order={false}
             ></ExhibitionLink>
             <Typography variant='h6' sx={{paddingLeft: '5%'}}>Upcoming Exhibitions</Typography>
             <Grid>
             {
-                (pages) && (
-                    pages.map((page) => (
+                (exhibitions) && (
+                    exhibitions.map((e) => (
                         <ExhibitionLink
-                          key={page.title}
+                          key={e.name}
                           subtitle='Gallery Exhibition'
-                          title={page.title}
-                          date='Jan 1 - Feb 1'
-                          description='lorem ipsum....'
+                          title={e.name}
+                          date={`${e.start} - ${e.end}`}
+                          description={e.description}
+                          image={e.image}
                           order={true}
                         ></ExhibitionLink>
                     ))
