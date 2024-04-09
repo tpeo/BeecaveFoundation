@@ -10,6 +10,7 @@ import {
   Grid
 } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CircleIcon from '@mui/icons-material/Circle';
 
 export default function ExhibitionLink({subtitle, title, date, description, image, order}) {
 
@@ -26,9 +27,11 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
   {/* <CardContent sx={{ flex: '1 0 auto' }}> */}
     <Grid item >
       <>
+        <>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {subtitle}
+        <CircleIcon fontSize='small' sx={{color: 'green'}} /> {subtitle}
         </Typography>
+        </>
         <Typography variant="h4" component="div">
           {title}
         </Typography>
@@ -44,7 +47,7 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
           {description}
         </Typography>    
       </>
-    <Box>
+    <Box display="flex" sx={{ alignItems: 'center'}}>
       <ArrowForwardIcon></ArrowForwardIcon>
       <Link to={`/Exhibition/${title}`} style={{
           textDecoration: 'none',
@@ -54,7 +57,7 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
           }} 
           onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
           onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
-          size="small"> Visit Exhibition</Link>
+          size="small"> View Information</Link>
     </Box>
   </Grid>
 </Grid>
