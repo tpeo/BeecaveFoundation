@@ -13,7 +13,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export default function ExhibitionLink({subtitle, title, date, description, image, order}) {
 
-  const imageBlock = <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: "space-between", pl: 1, pb: 1 }}>
+  const imageBlock = <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: "space-between", pl: 1, pb: 1, padding: '1%' }}>
       <CardMedia
         component="img"
         image={`https://drive.google.com/thumbnail?id=${image}`}
@@ -22,7 +22,7 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
     </Box>
 
   const textBlock = <Grid container rowSpacing={12} 
-    sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', paddingLeft: '5%', height: '100%', flexWrap: 'nowrap' }}>
+    sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', paddingLeft: '5%', paddingRight: '10%', height: '100%', flexWrap: 'nowrap' }}>
   {/* <CardContent sx={{ flex: '1 0 auto' }}> */}
     <Grid item >
       <>
@@ -62,7 +62,7 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
   return (
     <Grid item xs={12}>
 
-    <Card sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between", paddingX: '5%', paddingY: '1%'}}>
+    <Card sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between", paddingX: '3%', paddingY: '1%'}}>
        {
         (order) ? 
         <>
@@ -75,10 +75,10 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
         </>
 
            : <>
-          <Grid item xs={8}> 
+          <Grid item xs={4}> 
             {textBlock}
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={8}>
             {imageBlock}
           </Grid>
            </>
