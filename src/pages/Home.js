@@ -3,6 +3,10 @@ import ExhibitionLink from '../ExhibitionLink.js';
 import NavigationBar from '../components/navbar.js';
 import { Link } from 'react-router-dom';
 import { Box, Grid, Typography, Card, CardMedia } from '@mui/material';
+import ArchiveCard from '../components/archiveCard.js';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import SearchBar from '../components/SearchBar.js';
+import Footer from '../components/footer.js';
 
 const spreadsheetId = '1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w'; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
 const ranges = 'B2:F5'; // might need to set this
@@ -50,6 +54,7 @@ const Home = () => {
     return (
         <div className='container'>
           <NavigationBar/>
+            <SearchBar/>
             <Card>
               <div style={{ position: "relative" }}>
                 <CardMedia component="img" image={'/images/frog.jpeg'} title="frog" alt="frog" /> 
@@ -95,7 +100,54 @@ const Home = () => {
                 )
             }
             </Grid>
+            <Box sx={{ marginY: '3%'}}>
+            <Typography variant='h6' sx={{paddingLeft: '5%'}}>Exhibitions Archive</Typography>
+              { (exhibitions.length > 0) && (
+                <Grid container spacing={2} direction="row" sx={{ paddingX: '3%' }}>
+
+                  <Grid item xs={4}>
+                    <ArchiveCard
+                        key={exhibitions[0].name}
+                        title={exhibitions[0].name}
+                        date={`${exhibitions[0].start} - ${exhibitions[0].end}`}
+                        image={exhibitions[0].image}
+                    ></ArchiveCard>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <ArchiveCard
+                        key={exhibitions[0].name}
+                        title={exhibitions[0].name}
+                        date={`${exhibitions[0].start} - ${exhibitions[0].end}`}
+                        image={exhibitions[0].image}
+                    ></ArchiveCard>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <ArchiveCard
+                        key={exhibitions[0].name}
+                        title={exhibitions[0].name}
+                        date={`${exhibitions[0].start} - ${exhibitions[0].end}`}
+                        image={exhibitions[0].image}
+                    ></ArchiveCard>
+                  </Grid>
+              </Grid>
+              )}
+              <Box sx={{ paddingLeft: '5%', marginY: '3%' }}>
+                <ArrowForwardIcon></ArrowForwardIcon>
+                <Link to={`/ExhibitionArchive`} style={{
+                    textDecoration: 'none',
+                    color: 'inherit', // This ensures the link inherits the color from its parent
+                    transition: 'text-decoration 0.3s ease', 
+                    // Smooth transition for the underline
+                    }} 
+                    onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
+                    onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
+                    size="small"> Visit Archive</Link>
+              </Box>
+            </Box>
+        <Footer/>
+
             
+
         </div>
     )
 
