@@ -112,7 +112,7 @@ const Home = () => {
               )
             }
             
-            <Typography variant='h6' sx={{paddingLeft: '5%'}}>Upcoming Exhibitions</Typography>
+            {/* <Typography variant='h6' sx={{paddingLeft: '5%'}}>Upcoming Exhibitions</Typography> */}
             {/* <Grid container>
             {
                 (exhibitions) && (
@@ -130,8 +130,8 @@ const Home = () => {
                 )
             }
             </Grid> */}
-            <Box sx={{ marginY: '3%'}}>
-            <Typography variant='h6' sx={{paddingLeft: '5%'}}>Exhibitions Archive</Typography>
+            <Box>
+            <Typography variant='h6' sx={{paddingLeft: '5%', paddingY: '3%'}}>Exhibitions Archive</Typography>
               { (exhibitions.length > 0) && (
                 <Grid container spacing={2} direction="row" sx={{ paddingX: '3%' }}>
 
@@ -145,23 +145,23 @@ const Home = () => {
                   </Grid>
                   <Grid item xs={4}>
                     <ArchiveCard
-                        key={exhibitions[0].name}
-                        title={exhibitions[0].name}
-                        date={`${exhibitions[0].start} - ${exhibitions[0].end}`}
-                        image={exhibitions[0].image}
+                        key={exhibitions[1].name}
+                        title={exhibitions[1].name}
+                        date={`${exhibitions[1].start} - ${exhibitions[1].end}`}
+                        image={exhibitions[1].image}
                     ></ArchiveCard>
                   </Grid>
                   <Grid item xs={4}>
                     <ArchiveCard
-                        key={exhibitions[0].name}
-                        title={exhibitions[0].name}
-                        date={`${exhibitions[0].start} - ${exhibitions[0].end}`}
-                        image={exhibitions[0].image}
+                        key={exhibitions[2].name}
+                        title={exhibitions[2].name}
+                        date={`${exhibitions[2].start} - ${exhibitions[2].end}`}
+                        image={exhibitions[2].image}
                     ></ArchiveCard>
                   </Grid>
               </Grid>
               )}
-              <Box sx={{ paddingLeft: '5%', marginY: '3%' }}>
+              <Box display="flex" sx={{ paddingLeft: '5%', marginY: '3%', alignItems: 'center' }}>
                 <ArrowForwardIcon></ArrowForwardIcon>
                 <Link to={`/ExhibitionArchive`} style={{
                     textDecoration: 'none',

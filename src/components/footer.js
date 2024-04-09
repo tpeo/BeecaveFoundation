@@ -17,7 +17,7 @@ export default function Footer() {
                         <Grid item xs={4} >
                             <Typography color="white">Support the Bee Cave Arts Foundation</Typography>
                             <Typography color="white">Members can join the <Link color="white" to="https://beecavearts.foundation/artist-registry/join-the-artist-registry/">Artists Registry</Link>. Your donation is tax deductive. All donations help!</Typography>
-                            <Box>
+                            <Box display="flex" sx={{ alignItems: 'center' }}>
                                 <ArrowForwardIcon sx={{color: "white"}}></ArrowForwardIcon>
                                 <Link to="" style={{
                                     textDecoration: 'none',
