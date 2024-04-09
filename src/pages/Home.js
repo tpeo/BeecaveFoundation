@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { Box, Grid, Typography, Card, CardMedia } from '@mui/material';
 import ArchiveCard from '../components/archiveCard.js';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import SearchBar from '../components/SearchBar.js';
 import Footer from '../components/footer.js';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const spreadsheetId = '1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w'; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
 const ranges = 'B2:F5'; // might need to set this
@@ -19,6 +19,29 @@ const extractImageId = (imageUrl) => {
   const id = parts[1];
   return id;
 };
+
+export const darkTheme = createTheme({
+  typography: {
+      fontFamily: [
+        'DM Sans',
+        'sans-serif',
+      ].join(','),
+    },
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: `
+          @font-face {
+            font-family: 'DM Sans', sans-serif;
+            font-style: normal;
+            font-display: swap;
+            font-weight: 400;
+            src: url(https://fonts.googleapis.com/css2?family=DM+Sans) format('woff2');
+            unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
+          }
+        `,
+      },
+    },
+});
 
 const Home = () => {
     const [exhibitions, setExhibitions] = useState([]);
@@ -52,9 +75,9 @@ const Home = () => {
       }, []);
 
     return (
+        <ThemeProvider theme={darkTheme}>
         <div className='container'>
           <NavigationBar/>
-            <SearchBar/>
             <Card>
               <div style={{ position: "relative" }}>
                 <CardMedia component="img" image={'/images/frog.jpeg'} title="frog" alt="frog" /> 
@@ -69,21 +92,28 @@ const Home = () => {
               </div>
             </Card>
 
-            <Typography variant='h5' sx={{paddingY: '5%', paddingRight: '40%', paddingLeft: '5%'}}>
+            <Typography variant='h5' sx={{weight:'300', paddingY: '5%', paddingRight: '40%', paddingLeft: '5%'}}>
               Established in 2010, Bee Cave Arts Foundation invigorates the community and visitor experience through diverse public art initiatives, including the Bee Cave Sculpture Park, The Hive art center, and ongoing exhibitions and classes.
             </Typography>
-
-            <ExhibitionLink
-                key="Current Exhibition"
-                subtitle='CURRENT GALLERY EXHIBITION'
-                title="Current Exhibition"
-                date='Jan 1 - Feb 1'
-                description='lorem ipsum....'
-                image="/images/dummy.png"
-                order={false}
-            ></ExhibitionLink>
+            {
+              (exhibitions.length > 0) && (
+              <Grid container>
+                <ExhibitionLink
+                  key="Current Exhibition"
+                  subtitle='CURRENT GALLERY EXHIBITION'
+                  title={exhibitions[0].name}
+                  date={`${exhibitions[0].start} - ${exhibitions[0].end}`}
+                  description={exhibitions[0].description}
+                  image={exhibitions[0].image}
+                  order={false}
+                ></ExhibitionLink>
+              </Grid>
+                
+              )
+            }
+            
             <Typography variant='h6' sx={{paddingLeft: '5%'}}>Upcoming Exhibitions</Typography>
-            <Grid container>
+            {/* <Grid container>
             {
                 (exhibitions) && (
                     exhibitions.map((e) => (
@@ -99,7 +129,7 @@ const Home = () => {
                     ))
                 )
             }
-            </Grid>
+            </Grid> */}
             <Box sx={{ marginY: '3%'}}>
             <Typography variant='h6' sx={{paddingLeft: '5%'}}>Exhibitions Archive</Typography>
               { (exhibitions.length > 0) && (
@@ -149,6 +179,7 @@ const Home = () => {
             
 
         </div>
+        </ThemeProvider>
     )
 
 }
