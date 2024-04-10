@@ -1,17 +1,18 @@
 import { MeiliSearch } from 'meilisearch'
 // import exhibitions from './exhibitions.json'
 import { useState } from 'react'
-import {IconButton, Box, Menu, MenuItem} from '@mui/material'
+import {Box, Menu, MenuItem} from '@mui/material'
 import { useNavigate } from 'react-router'
 import SearchBar from "material-ui-search-bar";
 
-const client = new MeiliSearch({
+export const client = new MeiliSearch({
     host: 'http://localhost:7700',
     apiKey: 'aSampleMasterKey'
 })
+export const index = client.index('exhibitions')
 
 async function search(query) {
-    const index = client.index('movies')
+    
     // index.addDocuments(movies) // when to update
         // .then((res) => console.log(res))
     const search = await index.search(query, {
@@ -48,6 +49,7 @@ export default function SearchBarComponent() {
 
         const results = await search(value)
         setSearchRes(results)
+        if (results.length == 0) handleClose()
         // console.log(event.currentTarget)
     }
 
@@ -57,9 +59,8 @@ export default function SearchBarComponent() {
                 value={value}
                 onChange={(e) => {setValue(e)}}    
                 onKeyDown={(ev) => {
-                    console.log(`Pressed keyCode ${ev.key}`);
+                    // console.log(`Pressed keyCode ${ev.key}`);
                     if (ev.key === 'Enter') {
-                      // Do code here
                       processSearch(ev);
                       ev.preventDefault();
                     }
@@ -72,12 +73,12 @@ export default function SearchBarComponent() {
                 onClose={handleClose}
                 MenuListProps={{
                 'aria-labelledby': 'basic-button',
+                style: { width: '100%' }
                 }}
-                sx={{ width: '100%'}}
             >
                 {
                     searchRes.map((result) => (
-                        <MenuItem onClick={(e) => {handleCloseNav(e)}}>{result.title}</MenuItem>
+                        <MenuItem onClick={(e) => {handleCloseNav(e)}}>{result.name}</MenuItem>
                     ))
                 }
 

@@ -8,7 +8,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Footer from '../components/footer.js';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import currentexhibitions from '../components/exhibitions.json'
-import {writeJsonFile} from 'write-json-file';
+import { client, index } from '../components/SearchBar.js';
 
 const spreadsheetId = '1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w'; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
 const ranges = 'B2:F5'; // might need to set this
@@ -46,9 +46,10 @@ export const darkTheme = createTheme({
 });
 
 const updateSearch = async (exhibitions) => {
-  const temp = JSON.parse(currentexhibitions)
-  const result = exhibitions.filter((e) => temp.includes(e))
+  const result = exhibitions.filter((e) => !currentexhibitions.includes(e))
   console.log(result)
+  index.addDocuments(result) // when to update
+    .then((res) => console.log(res))
   // await writeJsonFile('exhibitions.json', JSON.stringify(result))
 }
 
