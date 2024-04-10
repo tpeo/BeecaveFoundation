@@ -7,7 +7,8 @@ import {
   CardMedia,
   Box,
   CardActions,
-  Grid
+  Grid,
+  Icon
 } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CircleIcon from '@mui/icons-material/Circle';
@@ -29,7 +30,8 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
       <>
         <>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        <CircleIcon fontSize='small' sx={{color: 'green'}} /> {subtitle}
+        <CircleIcon sx={{fontSize: 12, color: 'green'}} />
+         {subtitle}
         </Typography>
         </>
         <Typography variant="h4" component="div">
