@@ -13,11 +13,12 @@ export default function Footer() {
         <ThemeProvider theme={darkTheme}>
             <Container maxWidth="xl">
                 <Box sx={{ bgcolor: "#000000", paddingLeft:"5%", paddingY:"5%"}}>
-                    <Grid container direction="row" spacing={4}>
+                    <Grid container direction="row" spacing={12}>
                         <Grid item xs={4} >
-                            <Typography color="white">Support the Bee Cave Arts Foundation</Typography>
-                            <Typography color="white">Members can join the <Link color="white" to="https://beecavearts.foundation/artist-registry/join-the-artist-registry/">Artists Registry</Link>. Your donation is tax deductive. All donations help!</Typography>
-                            <Box display="flex" sx={{ alignItems: 'center' }}>
+                            <Typography color="white" sx={{paddingBottom: '2%'}}>Support the Bee Cave Arts Foundation</Typography>
+                            <Typography variant="body2" color="white">Members can join the <Link color="white" to="https://beecavearts.foundation/artist-registry/join-the-artist-registry/"
+                                >Artists Registry</Link>. Your donation is tax deductive. All donations help!</Typography>
+                            <Box display="flex" sx={{ alignItems: 'center', paddingTop: '2%'}}>
                                 <ArrowForwardIcon sx={{color: "white"}}></ArrowForwardIcon>
                                 <Link to="" style={{
                                     textDecoration: 'none',
@@ -31,7 +32,7 @@ export default function Footer() {
                         </Grid>
                         <Grid item xs={8}>
                             <Typography color="white">Connect</Typography>
-                            <Box display="flex" direction="row" justifyContent="space-evenly" alignItems="left">
+                            <Box display="flex" direction="row" justifyContent="space-between" alignItems="left" width="70%">
                                 <Link color="white">X</Link>
                                 <Link color="white">FACEBOOK</Link>
                                 <Link color="white">YOUTUBE</Link>

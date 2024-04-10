@@ -91,10 +91,12 @@ const Home = () => {
                   }} variant='h3'> Bee Cave Arts Foundation</Typography>
               </div>
             </Card>
+            <Box sx={{ backgroundColor: "#f0f0f0"}}>
+              <Typography variant='h5' sx={{weight:'300', paddingY: '5%', paddingRight: '40%', paddingLeft: '5%'}}>
+                Established in 2010, Bee Cave Arts Foundation invigorates the community and visitor experience through diverse public art initiatives, including the Bee Cave Sculpture Park, The Hive art center, and ongoing exhibitions and classes.
+              </Typography>
+            </Box>
 
-            <Typography variant='h5' sx={{weight:'300', paddingY: '5%', paddingRight: '40%', paddingLeft: '5%'}}>
-              Established in 2010, Bee Cave Arts Foundation invigorates the community and visitor experience through diverse public art initiatives, including the Bee Cave Sculpture Park, The Hive art center, and ongoing exhibitions and classes.
-            </Typography>
             {
               (exhibitions.length > 0) && (
               <Grid container>
