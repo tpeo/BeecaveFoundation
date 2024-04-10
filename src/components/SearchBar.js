@@ -4,6 +4,7 @@ import { Icon, TextField } from '@mui/material'
 import { useState } from 'react'
 import {IconButton, Box, Menu, MenuItem} from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router'
 
 const client = new MeiliSearch({
     host: 'http://localhost:7700',
@@ -27,11 +28,15 @@ export default function SearchBar() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const [searchRes, setSearchRes] = useState([]);
+    const navigate = useNavigate();
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleClose = () => {
+    const handleClose = (e) => {
         setAnchorEl(null);
+        console.log(e)
+        navigate(`/Exhibition/${e.outerText}`)
     };
 
     const processSearch = async(e) => {
@@ -67,7 +72,7 @@ export default function SearchBar() {
             >
                 {
                     searchRes.map((result) => (
-                        <MenuItem onClick={handleClose}>{result.title}</MenuItem>
+                        <MenuItem onClick={(e) => {handleClose(e)}}>{result.title}</MenuItem>
                     ))
                 }
 
