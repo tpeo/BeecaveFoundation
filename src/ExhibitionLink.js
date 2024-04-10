@@ -43,7 +43,7 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
   {/* </CardContent> */}
   <Grid item>
       <>  
-        <Typography variant="body2">
+        <Typography variant="body2" sx={{ marginBottom: '2%'}}>
           {description}
         </Typography>    
       </>
@@ -65,7 +65,8 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
   return (
     <Grid item xs={12}>
 
-    <Card sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between", paddingX: '3%', paddingY: '1%'}}>
+    <Card sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between", paddingX: '3%', paddingY: '1%',
+        border: "none", boxShadow: "none", backgroundColor: "#f0f0f0"}}>
        {
         (order) ? 
         <>
