@@ -16,12 +16,16 @@ export default function ArchiveCard({title, date, image}) {
 
   const navigate = useNavigate();
 
+  const handleClick = (title) => {
+    navigate(`/Exhibition/${title}`)
+  }
+
   return (
 
         <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'left', justifyContent: 'center',
                 border: "none", boxShadow: "none"}}>
-            <ButtonBase to={`/Exhibition/${title}`} sx={{ display: 'flex', flexDirection: 'column'}} >
-            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: "space-between", pl: 1, pb: 1, width: "100%" }}>
+            <ButtonBase onClick={() => {handleClick(title)}} sx={{ display: 'flex', flexDirection: 'column'}} >
+            <Box key={title} sx={{ display: 'flex', flexDirection: 'column', justifyContent: "space-between", pl: 1, pb: 1, width: "100%" }}>
                 <CardMedia
                     component="img"
                     image={`https://drive.google.com/thumbnail?id=${image}`}

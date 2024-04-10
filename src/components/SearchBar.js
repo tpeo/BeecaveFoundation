@@ -33,10 +33,14 @@ export default function SearchBar() {
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleClose = (e) => {
+    const handleCloseNav = (e) => {
         setAnchorEl(null);
         console.log(e)
         navigate(`/Exhibition/${e.outerText}`)
+    };
+
+    const handleClose = (e) => {
+        setAnchorEl(null);
     };
 
     const processSearch = async(e) => {
@@ -72,7 +76,7 @@ export default function SearchBar() {
             >
                 {
                     searchRes.map((result) => (
-                        <MenuItem onClick={(e) => {handleClose(e)}}>{result.title}</MenuItem>
+                        <MenuItem onClick={(e) => {handleCloseNav(e)}}>{result.title}</MenuItem>
                     ))
                 }
 
