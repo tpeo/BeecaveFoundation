@@ -75,6 +75,7 @@ export default function SearchBarComponent() {
                 MenuListProps={{
                 'aria-labelledby': 'basic-button',
                 }}
+                sx={{ width: '100%'}}
             >
                 {
                     searchRes.map((result) => (

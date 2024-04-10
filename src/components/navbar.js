@@ -45,6 +45,7 @@ function NavigationBar() {
       <AppBar position="static" color="primary" sx={{ bgcolor: "green" }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
+
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
@@ -111,9 +112,9 @@ function NavigationBar() {
                 </Button>
               ))}
             
+            </Box>
             <SearchBarComponent/>
 
-            </Box>
           </Toolbar>
         </Container>
       </AppBar>
