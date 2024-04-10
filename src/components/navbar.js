@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import SearchBar from './SearchBar';
+import SearchBarComponent from './SearchBar';
 
 const pages = [
   { title: 'Home', path: '/' },
@@ -111,7 +111,7 @@ function NavigationBar() {
                 </Button>
               ))}
             
-            <SearchBar/>
+            <SearchBarComponent/>
 
             </Box>
           </Toolbar>

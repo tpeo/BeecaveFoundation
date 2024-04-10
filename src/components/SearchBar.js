@@ -5,6 +5,7 @@ import { useState } from 'react'
 import {IconButton, Box, Menu, MenuItem} from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router'
+import SearchBar from "material-ui-search-bar";
 
 const client = new MeiliSearch({
     host: 'http://localhost:7700',
@@ -23,7 +24,7 @@ async function search(query) {
     return search.hits
 }
 
-export default function SearchBar() {
+export default function SearchBarComponent() {
     const [value, setValue] = useState("");
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -54,17 +55,18 @@ export default function SearchBar() {
 
     return (
         <Box>
-            <TextField
-                id="filled-helperText"
-                // label="Helper text"
-                defaultValue="search"
-                // helperText="Some important text"
-                variant="filled"
-                onInput={(e) => {setValue(e.target.value)}}
-            />
-            <IconButton
-                onClick={(e) => processSearch(e)}
-            ><SearchIcon/></IconButton>
+            <SearchBar
+                value={value}
+                onChange={(e) => {setValue(e)}}    
+                onKeyDown={(ev) => {
+                    console.log(`Pressed keyCode ${ev.key}`);
+                    if (ev.key === 'Enter') {
+                      // Do code here
+                      processSearch(ev);
+                      ev.preventDefault();
+                    }
+                  }}
+            ></SearchBar>
             <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
@@ -80,8 +82,20 @@ export default function SearchBar() {
                     ))
                 }
 
-
             </Menu>
+
+            {/* <TextField
+                id="filled-helperText"
+                // label="Helper text"
+                defaultValue="search"
+                // helperText="Some important text"
+                variant="filled"
+                onInput={(e) => {setValue(e.target.value)}}
+            />
+            <IconButton
+                onClick={(e) => processSearch(e)}
+            ><SearchIcon/></IconButton>
+         */}
         </Box>
 
         
