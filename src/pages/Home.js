@@ -7,6 +7,8 @@ import ArchiveCard from '../components/archiveCard.js';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Footer from '../components/footer.js';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import currentexhibitions from '../components/exhibitions.json'
+import {writeJsonFile} from 'write-json-file';
 
 const spreadsheetId = '1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w'; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
 const ranges = 'B2:F5'; // might need to set this
@@ -43,6 +45,13 @@ export const darkTheme = createTheme({
     },
 });
 
+const updateSearch = async (exhibitions) => {
+  const temp = JSON.parse(currentexhibitions)
+  const result = exhibitions.filter((e) => temp.includes(e))
+  console.log(result)
+  // await writeJsonFile('exhibitions.json', JSON.stringify(result))
+}
+
 const Home = () => {
     const [exhibitions, setExhibitions] = useState([]);
 
@@ -55,6 +64,7 @@ const Home = () => {
             if (data.valueRanges[0].values.length > 0) {
               const exhibitions = data.valueRanges[0].values.map((e, index) => {
                 return {
+                  id: index,
                   name: e[0],
                   start: e[1],
                   end: e[2],
@@ -63,6 +73,8 @@ const Home = () => {
                 }
               });
               setExhibitions(exhibitions);
+              //update search json here {id, name}
+              updateSearch(exhibitions)
             } else {
               console.log('No data found.');
             }

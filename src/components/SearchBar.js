@@ -1,9 +1,7 @@
 import { MeiliSearch } from 'meilisearch'
-import movies from './movies.json'
-import { Icon, TextField } from '@mui/material'
+// import exhibitions from './exhibitions.json'
 import { useState } from 'react'
 import {IconButton, Box, Menu, MenuItem} from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router'
 import SearchBar from "material-ui-search-bar";
 
