@@ -4,8 +4,8 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import './Gallery.css'; 
 import Button from 'react-bootstrap/Button';
 
-const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
-const ranges = `2:100`; 
+const spreadsheetId = '1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w';   //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
+const ranges = `2:3`; 
 const apiKey = process.env.REACT_APP_API_KEY;
 const ROWS= 'ROWS';
 
@@ -23,15 +23,17 @@ const Gallery = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log(sheetTitle);
         const title = `${sheetTitle}!${ranges}`
         console.log(title)
         const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?ranges=${sheetTitle}!${ranges}&key=${apiKey}&majorDimension=${ROWS}`);
         const data = await response.json();
+        console.log(data);
         if (data.valueRanges && data.valueRanges[0].values) {
           const fetchedArtworks = data.valueRanges[0].values.map((row, index) => ({
-            imageUrl: extractImageId(row[2]),
-            description: row[3],
-            imageId: extractImageId(row[2]),
+            imageUrl: extractImageId(row[8]),
+            description: row[5],
+            imageId: extractImageId(row[8]),
             key: index.toString(),
           }));
           setArtworks(fetchedArtworks);
