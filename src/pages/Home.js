@@ -11,7 +11,7 @@ import currentexhibitions from '../components/exhibitions.json'
 import { client, index } from '../components/SearchBar.js';
 
 const spreadsheetId = '1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w'; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
-const ranges = 'B2:F5'; // might need to set this
+const ranges = 'B2:F100'; // might need to set this
 const apiKey = process.env.REACT_APP_API_KEY;
 const ROWS= 'ROWS';
 const sheetTitle = 'Exhibitions';
@@ -55,6 +55,8 @@ const updateSearch = async (exhibitions) => {
 
 const Home = () => {
     const [exhibitions, setExhibitions] = useState([]);
+    const [upcoming, setUpcoming] = useState([]);
+    const [archive, setArchive] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -74,6 +76,12 @@ const Home = () => {
                 }
               });
               setExhibitions(exhibitions);
+              const date = new Date();
+              // exhibitions.map((e) => (console.log(Date.parse(e.start) > Date.parse(date))))
+              const res = exhibitions.filter((e) => Date.parse(e.start) > Date.parse(date))
+              setUpcoming(res)
+              const arch = exhibitions.filter(x => !res.includes(x))
+              setArchive(arch)
               //update search json here {id, name}
               updateSearch(exhibitions)
             } else {
@@ -127,14 +135,14 @@ const Home = () => {
               )
             }
             
-            {/* <Typography variant='h6' sx={{paddingLeft: '5%'}}>Upcoming Exhibitions</Typography> */}
-            {/* <Grid container>
+            <Typography variant='h6' sx={{paddingLeft: '5%'}}>Upcoming Exhibitions</Typography>
+            <Grid container>
             {
-                (exhibitions) && (
-                    exhibitions.map((e) => (
+                (upcoming) && (
+                  upcoming.map((e) => (
                         <ExhibitionLink
                           key={e.name}
-                          subtitle='Gallery Exhibition'
+                          subtitle='UPCOMING EXHIBITION'
                           title={e.name}
                           date={`${e.start} - ${e.end}`}
                           description={e.description}
@@ -144,34 +152,33 @@ const Home = () => {
                     ))
                 )
             }
-            </Grid> */}
+            </Grid>
             <Box>
             <Typography variant='h6' sx={{paddingLeft: '5%', paddingY: '3%'}}>Exhibitions Archive</Typography>
-              { (exhibitions.length > 0) && (
+              { (archive.length > 0) && (
                 <Grid container spacing={2} direction="row" sx={{ paddingX: '3%' }}>
-
                   <Grid item xs={4}>
                     <ArchiveCard
-                        key={exhibitions[0].name}
-                        title={exhibitions[0].name}
-                        date={`${exhibitions[0].start} - ${exhibitions[0].end}`}
-                        image={exhibitions[0].image}
+                        key={archive[1].name}
+                        title={archive[1].name}
+                        date={`${archive[1].start} - ${archive[1].end}`}
+                        image={archive[1].image}
                     ></ArchiveCard>
                   </Grid>
                   <Grid item xs={4}>
                     <ArchiveCard
-                        key={exhibitions[1].name}
-                        title={exhibitions[1].name}
-                        date={`${exhibitions[1].start} - ${exhibitions[1].end}`}
-                        image={exhibitions[1].image}
+                        key={archive[2].name}
+                        title={archive[2].name}
+                        date={`${archive[2].start} - ${archive[2].end}`}
+                        image={archive[2].image}
                     ></ArchiveCard>
                   </Grid>
                   <Grid item xs={4}>
                     <ArchiveCard
-                        key={exhibitions[2].name}
-                        title={exhibitions[2].name}
-                        date={`${exhibitions[2].start} - ${exhibitions[2].end}`}
-                        image={exhibitions[2].image}
+                        key={archive[3].name}
+                        title={archive[3].name}
+                        date={`${archive[3].start} - ${archive[3].end}`}
+                        image={archive[3].image}
                     ></ArchiveCard>
                   </Grid>
               </Grid>
