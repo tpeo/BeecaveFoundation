@@ -42,7 +42,7 @@ function NavigationBar() {
 
   return (
     // <ThemeProvider theme={darkTheme}>
-      <AppBar position="static" sx={{ bgcolor: "green" }}> 
+      <AppBar position="static" >  //sx={{ bgcolor: "green" }}
         <Container maxWidth="xl">
           <Toolbar disableGutters>
 
@@ -53,7 +53,7 @@ function NavigationBar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color="inherit"
+                //color="inherit"
               >
                 <MenuIcon />
               </IconButton>
@@ -94,7 +94,7 @@ function NavigationBar() {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: 'inherit',
+                //color: 'inherit',
                 textDecoration: 'none',
               }}
             >
@@ -106,7 +106,7 @@ function NavigationBar() {
                   key={page.title}
                   component={Link} // Use Link instead of 'a' tag
                   to={page.path}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  sx={{ my: 2,  display: 'block' }}
                 >
                   {page.title}
                 </Button>
