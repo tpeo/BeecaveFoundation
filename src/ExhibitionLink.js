@@ -7,7 +7,8 @@ import {
   CardMedia,
   Box,
   CardActions,
-  Grid
+  Grid,
+  Icon
 } from '@mui/material'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CircleIcon from '@mui/icons-material/Circle';
@@ -29,7 +30,8 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
       <>
         <>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        <CircleIcon fontSize='small' sx={{color: 'green'}} /> {subtitle}
+        <CircleIcon sx={{fontSize: 12, color: order ? 'gray' : 'green'}} />
+         {subtitle}
         </Typography>
         </>
         <Typography variant="h4" component="div">
@@ -43,7 +45,7 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
   {/* </CardContent> */}
   <Grid item>
       <>  
-        <Typography variant="body2">
+        <Typography variant="body2" sx={{ marginBottom: '2%'}}>
           {description}
         </Typography>    
       </>
@@ -65,7 +67,8 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
   return (
     <Grid item xs={12}>
 
-    <Card sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between", paddingX: '3%', paddingY: '1%'}}>
+    <Card sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between", paddingX: '3%', paddingY: '1%',
+        border: "none", boxShadow: "none", backgroundColor: order ? "#ffffff" : "#f0f0f0"}}>
        {
         (order) ? 
         <>

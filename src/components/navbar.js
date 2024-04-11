@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import SearchBar from './SearchBar';
+import SearchBarComponent from './SearchBar';
 
 const pages = [
   { title: 'Home', path: '/' },
@@ -45,6 +45,7 @@ function NavigationBar() {
       <AppBar position="static" color="primary" sx={{ bgcolor: "green" }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
+
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
                 size="large"
@@ -111,9 +112,9 @@ function NavigationBar() {
                 </Button>
               ))}
             
-            <SearchBar/>
-
             </Box>
+            <SearchBarComponent/>
+
           </Toolbar>
         </Container>
       </AppBar>
