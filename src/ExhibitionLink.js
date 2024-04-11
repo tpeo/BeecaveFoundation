@@ -18,7 +18,7 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
       <CardMedia
         component="img"
         image={`https://drive.google.com/thumbnail?id=${image}`}
-        alt="Live from space album cover"
+        alt={description}
       />
     </Box>
 
