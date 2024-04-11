@@ -35,14 +35,14 @@ function NavigationBar() {
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: '#000012',
+        main: "#000012",
       },
     },
   });
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar position="static" color="primary" sx={{ bgcolor: "green" }}>
+      <AppBar position="static"  sx={{ bgcolor: "green" }}> //color="primary"
         <Container maxWidth="xl">
           <Toolbar disableGutters>
 
