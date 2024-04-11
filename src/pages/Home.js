@@ -141,6 +141,7 @@ const Home = () => {
                         title={exhibitions[0].name}
                         date={`${exhibitions[0].start} - ${exhibitions[0].end}`}
                         image={exhibitions[0].image}
+                        description={exhibitions[0].description}
                     ></ArchiveCard>
                   </Grid>
                   <Grid item xs={4}>
@@ -149,6 +150,7 @@ const Home = () => {
                         title={exhibitions[1].name}
                         date={`${exhibitions[1].start} - ${exhibitions[1].end}`}
                         image={exhibitions[1].image}
+                        description={exhibitions[1].description}
                     ></ArchiveCard>
                   </Grid>
                   <Grid item xs={4}>
@@ -157,6 +159,7 @@ const Home = () => {
                         title={exhibitions[2].name}
                         date={`${exhibitions[2].start} - ${exhibitions[2].end}`}
                         image={exhibitions[2].image}
+                        description={exhibitions[2].description}
                     ></ArchiveCard>
                   </Grid>
               </Grid>

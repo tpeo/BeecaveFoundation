@@ -1,63 +1,109 @@
-import React, { useState, useEffect } from 'react';
-import ExhibitionLink from '../ExhibitionLink.js';
-import NavigationBar from '../components/navbar.js';
-import PastExhibitionIcon from '../components/PastExhibitionIcon.js';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import ExhibitionLink from "../ExhibitionLink.js";
+import NavigationBar from "../components/navbar.js";
+import PastExhibitionIcon from "../components/PastExhibitionIcon.js";
+import ArchiveCard from '../components/archiveCard.js';
+//import { useLocation } from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
-import { Box, Grid, Typography, Card, CardMedia } from '@mui/material';
+import Button from 'react-bootstrap/Button';
 
-const spreadsheetId = '14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
-const ranges = '2:100'; 
+import { Link } from "react-router-dom";
+import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
+import BootstrapCard from "../components/BootstrapCard.js";
+
+const spreadsheetId = "1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w"; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c';
+const ranges = 'B2:F5'; // might need to set this
 const apiKey = process.env.REACT_APP_API_KEY;
 const ROWS= 'ROWS';
+const sheetTitle = 'Exhibitions';
+
+const extractImageId = (imageUrl) => {
+    const parts = imageUrl.split("id=");
+    const id = parts[1];
+    return id;
+};
 
 const PastExhibitions = () => {
-    const [pages, setPages] = useState([]);
+
+    const [exhibitions, setExhibitions] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/?&key=${apiKey}`);
-            const data = await response.json();
-            if (data.sheets.length > 0) {
-              const pages = data.sheets.map((sheet, index) => ({
-                sheetId: sheet.properties.sheetId,
-                title: sheet.properties.title,
-                key: index.toString(),
-              }));
-              setPages(pages);
-            } else {
-              console.log('No data found.');
+            try {
+                const response = await fetch(
+                    `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?ranges=${sheetTitle}!${ranges}&key=${apiKey}&majorDimension=${ROWS}`
+                );
+                const data = await response.json();
+                console.log(data.valueRanges[0].values);
+                if (data.valueRanges[0].values.length > 0) {
+                    const exhibitions = data.valueRanges[0].values.map((e, index) => {
+                        return {
+                            name: e[0],
+                            start: e[1],
+                            end: e[2],
+                            image: extractImageId(e[3]),
+                            description: e[4],
+                        };
+                    });
+                    setExhibitions(exhibitions);
+                } else {
+                    console.log("No data found.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
             }
-          } catch (error) {
-            console.error('Error:', error);
-          }
         };
-    
+
         fetchData();
-      }, []);
+    }, []);
 
     return (
-        <div className='container'>
-          <NavigationBar/>
+        <div className="container">
+            <NavigationBar />
+            <Typography variant='h5' sx={{paddingLeft: '5%', paddingY: '3%'}} component="div">
+            Past Exhibition Archive
+        </Typography>
 
-            <Typography variant='h5' sx= {{paddingRight: '40%', paddingLeft: '5%'}}>
-              Past Exhibition Archive
-            </Typography>
-
-            <Grid>
-            {
-                (pages) && (
-                    pages.map((page) => (
-                        <PastExhibitionIcon sheetTitle={page.title}></PastExhibitionIcon>
-                    ))
-                )
-            }
-            </Grid>
+            <Grid container spacing={2} direction="row" sx={{ paddingX: '1%' }}>
             
+                {
+                    (exhibitions) && (
+                        exhibitions.map((exhibition) => (
+                            console.log(exhibition),
+                            // <Button key={exhibition} onClick={() => navigate(`/Exhibition/${exhibition.name}` )} className="gallery-item">
+                            //     <img
+                            //     src={`https://drive.google.com/thumbnail?id=${exhibition.image}`}
+                            //     alt={exhibition.description}
+                            //     className="gallery-image"
+                            //     />
+                            // </Button>
+                            <Grid item xs={4}>
+                                <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'left', justifyContent: 'center', paddingX: '5%', paddingY: '1%',
+                                        border: "none", boxShadow: "none"}}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: "space-between", pl: 1, pb: 1 }}>
+                                        <a href={(`/Exhibition/${exhibition.name}` )}> {/* Replace "https://example.com" with the actual URL you want to route to */}
+                                            <CardMedia
+                                                component="img"
+                                                image={`https://drive.google.com/thumbnail?id=${exhibition.image}`}
+                                                alt={exhibition.description}
+                                            />
+                                        </a>
+                                    </Box>
+                                    <Typography variant="h5" component="div">
+                                        {exhibition.name}
+                                    </Typography>
+                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                        {`${exhibition.start} - ${exhibition.end}`}
+                                    </Typography>
+                                </Card>
+                            </Grid>
+                        ))
+                    )
+                }
+            </Grid>
         </div>
-    )
-
-}
+    );
+};
 export default PastExhibitions;

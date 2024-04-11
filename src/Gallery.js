@@ -4,8 +4,10 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import './Gallery.css'; 
 import Button from 'react-bootstrap/Button';
 
+import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
+
 const spreadsheetId = '1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w';   //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
-const ranges = `2:3`; 
+const ranges = `2:100`; 
 const apiKey = process.env.REACT_APP_API_KEY;
 const ROWS= 'ROWS';
 
@@ -48,24 +50,67 @@ const Gallery = () => {
     fetchData();
   }, []);
 
-  return (
-    <div className="gallery-container">
-      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-        {artworks.map((artwork) => (
-          <Button key={artwork.key} onClick={() => navigate(`/details/${artwork.imageId}`, {state: {imageId: artwork.imageId, description:artwork.description}})} className="gallery-item">
-            <img
-              src={`https://drive.google.com/thumbnail?id=${artwork.imageId}`}
-              alt={artwork.description}
-              className="gallery-image"
-            />
-            <div className="image-overlay">
-              {artwork.description}
-            </div>
-          </Button>
+//   return (
+//     <div className="gallery-container">
+
+// <Grid container spacing={2} direction="row" sx={{ paddingX: '1%' }}>
+//             {
+//                 (artworks) && (
+//                   artworks.map((artwork) => (
+//                         <Grid item xs={4}>
+//                             <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'left', justifyContent: 'center', paddingX: '5%', paddingY: '1%',
+//                                     border: "none", boxShadow: "none"}}>
+                                
+//                                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: "space-between", pl: 1, pb: 1 }}>
+//                                     <Link to={{
+//                                         pathname: `/details/${artwork.imageId}`,
+//                                         state: {
+//                                             imageId: artwork.imageId,
+//                                             description: artwork.description
+//                                         }
+//                                     }} className="gallery-item">
+//                                         <CardMedia
+//                                             component="img"
+//                                             image={`https://drive.google.com/thumbnail?id=${artwork.imageId}`}
+//                                             alt={artwork.description}
+//                                         />
+//                                     </Link>
+//                                 </Box>
+//                                 </Card>
+//                         </Grid>
+//                     ))
+//                 )
+//             }
+//         </Grid>
+//     </div>
+//   );
+return (
+  <div className="gallery-container">
+    <Grid container spacing={2} direction="row" sx={{ paddingX: '1%' }}>
+      {artworks &&
+        artworks.map((artwork) => (
+          <Grid item xs={4} key={artwork.imageId}>
+            <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'left', justifyContent: 'center', paddingX: '5%', paddingY: '1%', border: "none", boxShadow: "none"}}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: "space-between", pl: 1, pb: 1 }}>
+                <Link to={{
+                    pathname: `/details/${artwork.imageId}`,
+                    state: {
+                        description: artwork.description // Pass description directly
+                    }
+                }} className="gallery-item">
+                    <CardMedia
+                        component="img"
+                        image={`https://drive.google.com/thumbnail?id=${artwork.imageId}`}
+                        alt={artwork.description}
+                    />
+                </Link>
+              </Box>
+            </Card>
+          </Grid>
         ))}
-      </ResponsiveMasonry> 
-    </div>
-  );
+    </Grid>
+  </div>
+);
 };
 
 export default Gallery;

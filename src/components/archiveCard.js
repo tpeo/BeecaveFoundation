@@ -10,7 +10,7 @@ import {
   Grid
 } from '@mui/material'
 
-export default function ArchiveCard({title, date, image}) {
+export default function ArchiveCard({title, date, image, description}) {
 
   
   return (
@@ -20,7 +20,7 @@ export default function ArchiveCard({title, date, image}) {
                 <CardMedia
                     component="img"
                     image={`https://drive.google.com/thumbnail?id=${image}`}
-                    alt="Live from space album cover"
+                    alt={description}
                 />
             </Box>
             <Typography variant="h5" component="div">

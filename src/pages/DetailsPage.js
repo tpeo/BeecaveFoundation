@@ -1,25 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
-const DetailsPage = () => {
-
-  const location = useLocation();
-  const imageId = location.state.imageId;
-  const description = location.state.description;
-  console.log(location);
-
+export default function DetailsPage(imageId, description){
   return (
-    <div>
-      <img
-              src={`https://drive.google.com/thumbnail?id=${imageId}`}
-              alt={description}
-              className="gallery-image"
-            />
-            <h1 >
-              {description}
-            </h1>
-    </div>
-  );
-};
+        <div>
+          <img
+                  src={`https://drive.google.com/thumbnail?id=${imageId}`}
+                  alt={description}
+                  className="gallery-image"
+                />
+                <h1 >
+                  {description}
+                </h1>
+        </div>
+      )
+}
 
-export default DetailsPage;
+// import { useParams, useLocation } from 'react-router-dom';
+
+// const DetailsPage = () => {
+//   const { imageId } = useParams();
+//   const { state } = useLocation();
+//   const { description } = state.description;
+
+//   return (
+//     <div>
+//       <img
+//         src={`https://drive.google.com/thumbnail?id=${imageId}`}
+//         alt={description}
+//         className="gallery-image"
+//       />
+//       <h1>{description}</h1>
+//     </div>
+//   );
+// };
+
+// export default DetailsPage;
+
+
