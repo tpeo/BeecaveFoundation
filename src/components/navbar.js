@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+//import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import SearchBarComponent from './SearchBar';
 
@@ -32,17 +32,17 @@ function NavigationBar() {
     setAnchorElNav(null);
   };
 
-  const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#000012",
-      },
-    },
-  });
+  // const darkTheme = createTheme({
+  //   palette: {
+  //     primary: {
+  //       main: "#000012",
+  //     },
+  //   },
+  // });
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <AppBar position="static"  sx={{ bgcolor: "green" }}> //color="primary"
+    // <ThemeProvider theme={darkTheme}>
+      <AppBar position="static" sx={{ bgcolor: "green" }}> 
         <Container maxWidth="xl">
           <Toolbar disableGutters>
 
@@ -118,7 +118,7 @@ function NavigationBar() {
           </Toolbar>
         </Container>
       </AppBar>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }
 
