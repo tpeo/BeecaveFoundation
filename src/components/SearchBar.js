@@ -36,7 +36,7 @@ export default function SearchBarComponent() {
     const handleCloseNav = (e) => {
         setAnchorEl(null);
         console.log(e)
-        navigate(`/Exhibition/${e.outerText}`)
+        navigate(`/Exhibition/${e.target.innerText}`)
     };
 
     const handleClose = (e) => {
