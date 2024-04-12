@@ -2,21 +2,21 @@ import React, { useState, useEffect } from "react";
 import ExhibitionLink from "../ExhibitionLink.js";
 import NavigationBar from "../components/navbar.js";
 import PastExhibitionIcon from "../components/PastExhibitionIcon.js";
-import ArchiveCard from '../components/archiveCard.js';
+import ArchiveCard from "../components/archiveCard.js";
 //import { useLocation } from "react-router-dom";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
 import { Link } from "react-router-dom";
 import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
 import BootstrapCard from "../components/BootstrapCard.js";
 
 const spreadsheetId = "1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w"; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c';
-const ranges = 'B2:F5'; // might need to set this
+const ranges = "B2:F5"; // might need to set this
 const apiKey = process.env.REACT_APP_API_KEY;
-const ROWS= 'ROWS';
-const sheetTitle = 'Exhibitions';
+const ROWS = "ROWS";
+const sheetTitle = "Exhibitions";
 
 const extractImageId = (imageUrl) => {
     const parts = imageUrl.split("id=");
@@ -25,7 +25,6 @@ const extractImageId = (imageUrl) => {
 };
 
 const PastExhibitions = () => {
-
     const [exhibitions, setExhibitions] = useState([]);
     const navigate = useNavigate();
 
@@ -62,46 +61,66 @@ const PastExhibitions = () => {
     return (
         <div className="container">
             <NavigationBar />
-            <Typography variant='h5' sx={{paddingLeft: '5%', paddingY: '3%'}} component="div">
-            Past Exhibition Archive
-        </Typography>
+            <Typography variant="h5" sx={{ paddingLeft: "5%", paddingY: "3%" }} component="div">
+                All Exhibition Archive
+            </Typography>
 
-            <Grid container spacing={2} direction="row" sx={{ paddingX: '1%' }}>
-            
-                {
-                    (exhibitions) && (
-                        exhibitions.map((exhibition) => (
+            <Grid container spacing={2} direction="row" sx={{ paddingX: "1%" }}>
+                {exhibitions &&
+                    exhibitions.map(
+                        (exhibition) => (
                             console.log(exhibition),
-                            // <Button key={exhibition} onClick={() => navigate(`/Exhibition/${exhibition.name}` )} className="gallery-item">
-                            //     <img
-                            //     src={`https://drive.google.com/thumbnail?id=${exhibition.image}`}
-                            //     alt={exhibition.description}
-                            //     className="gallery-image"
-                            //     />
-                            // </Button>
-                            <Grid item xs={4}>
-                                <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'left', justifyContent: 'center', paddingX: '5%', paddingY: '1%',
-                                        border: "none", boxShadow: "none"}}>
-                                    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: "space-between", pl: 1, pb: 1 }}>
-                                        <a href={(`/Exhibition/${exhibition.name}` )}> {/* Replace "https://example.com" with the actual URL you want to route to */}
-                                            <CardMedia
-                                                component="img"
-                                                image={`https://drive.google.com/thumbnail?id=${exhibition.image}`}
-                                                alt={exhibition.description}
-                                            />
-                                        </a>
-                                    </Box>
-                                    <Typography variant="h5" component="div">
-                                        {exhibition.name}
-                                    </Typography>
-                                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                        {`${exhibition.start} - ${exhibition.end}`}
-                                    </Typography>
-                                </Card>
-                            </Grid>
-                        ))
-                    )
-                }
+                            (
+                                // <Button key={exhibition} onClick={() => navigate(`/Exhibition/${exhibition.name}` )} className="gallery-item">
+                                //     <img
+                                //     src={`https://drive.google.com/thumbnail?id=${exhibition.image}`}
+                                //     alt={exhibition.description}
+                                //     className="gallery-image"
+                                //     />
+                                // </Button>
+                                <Grid item xs={4}>
+                                    <Card
+                                        sx={{
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            alignItems: "left",
+                                            justifyContent: "center",
+                                            paddingX: "5%",
+                                            paddingY: "1%",
+                                            border: "none",
+                                            boxShadow: "none",
+                                        }}
+                                    >
+                                        <Box
+                                            sx={{
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                justifyContent: "space-between",
+                                                pl: 1,
+                                                pb: 1,
+                                            }}
+                                        >
+                                            <a href={`/Exhibition/${exhibition.name}`}>
+                                                {" "}
+                                                {/* Replace "https://example.com" with the actual URL you want to route to */}
+                                                <CardMedia
+                                                    component="img"
+                                                    image={`https://drive.google.com/thumbnail?id=${exhibition.image}`}
+                                                    alt={exhibition.description}
+                                                />
+                                            </a>
+                                        </Box>
+                                        <Typography variant="h5" component="div">
+                                            {exhibition.name}
+                                        </Typography>
+                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                                            {`${exhibition.start} - ${exhibition.end}`}
+                                        </Typography>
+                                    </Card>
+                                </Grid>
+                            )
+                        )
+                    )}
             </Grid>
         </div>
     );
