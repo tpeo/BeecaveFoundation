@@ -84,18 +84,6 @@ export default function SearchBarComponent() {
 
             </Menu>
 
-            {/* <TextField
-                id="filled-helperText"
-                // label="Helper text"
-                defaultValue="search"
-                // helperText="Some important text"
-                variant="filled"
-                onInput={(e) => {setValue(e.target.value)}}
-            />
-            <IconButton
-                onClick={(e) => processSearch(e)}
-            ><SearchIcon/></IconButton>
-         */}
         </Box>
 
         
