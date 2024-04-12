@@ -10,7 +10,7 @@ import Button from "react-bootstrap/Button";
 
 import { Link } from "react-router-dom";
 import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
-import BootstrapCard from "../components/BootstrapCard.js";
+//import BootstrapCard from "../components/BootstrapCard.js";
 
 const spreadsheetId = "1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w"; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c';
 const ranges = "B2:F5"; // might need to set this
