@@ -32,7 +32,7 @@ const Gallery = () => {
                 if (data.valueRanges && data.valueRanges[0].values) {
                     const fetchedArtworks = data.valueRanges[0].values.map((row, index) => ({
                         imageUrl: extractImageId(row[8]),
-                        description: row[5],
+                        title: row[5],
                         price: row[6],
                         size: row[7],
                         imageId: extractImageId(row[8]),
@@ -64,6 +64,7 @@ const Gallery = () => {
                                     flexDirection: "column",
                                     alignItems: "left",
                                     justifyContent: "center",
+                                    textAlign: "center",
                                     paddingX: "5%",
                                     paddingY: "1%",
                                     border: "none",
@@ -81,14 +82,18 @@ const Gallery = () => {
                                 >
                                     
                                     <Link
-                                    to={`/details/${artwork.imageId}?description=${encodeURIComponent(artwork.description)}&imageId=${encodeURIComponent(artwork.imageId)}&price=${encodeURIComponent(artwork.price)}&size=${encodeURIComponent(artwork.size)}&type=${encodeURIComponent(artwork.type)}`}
+                                    to={`/details/${artwork.imageId}?title=${encodeURIComponent(artwork.title)}&imageId=${encodeURIComponent(artwork.imageId)}&price=${encodeURIComponent(artwork.price)}&size=${encodeURIComponent(artwork.size)}&type=${encodeURIComponent(artwork.type)}`}
                                     className="gallery-item"
+                                    style={{textDecoration:'none', color:'inherit'}}
                                 >
-                                    <CardMedia
-                                        component="img"
-                                        image={`https://drive.google.com/thumbnail?id=${artwork.imageId}`}
-                                        alt={artwork.description}
-                                    />
+                                        <CardMedia
+                                            component="img"
+                                            image={`https://drive.google.com/thumbnail?id=${artwork.imageId}`}
+                                            alt={artwork.description}
+                                        />
+                                        <Typography sx={{my: "2%"}}>{artwork.title}</Typography>
+
+                                    
                                 </Link>
                                 </Box>
                             </Card>

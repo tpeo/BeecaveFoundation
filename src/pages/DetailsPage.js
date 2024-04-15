@@ -8,7 +8,7 @@ export default function DetailsPage() {
     const location = useLocation();
 
     const queryParams = new URLSearchParams(location.search);
-    const description = queryParams.get("description");
+    const title = queryParams.get("title");
     const imageId = queryParams.get("imageId");
     const price = queryParams.get("price");
     const size = queryParams.get("size");
@@ -23,7 +23,7 @@ export default function DetailsPage() {
                 <CardMedia
                     component="img"
                     image={`https://drive.google.com/thumbnail?id=${imageId}`}
-                    alt={description}
+                    alt={title}
                     sx={{ maxHeight: "70vh", marginLeft: "5%" }}
                 />
             </Grid>
@@ -45,7 +45,7 @@ export default function DetailsPage() {
                     }}
                 >
                     <Typography variant="h5" sx={{ ...titleStyle }}>
-                        {description}
+                        {title}
                     </Typography>
                     <Typography variant="h5" sx={{ ...textStyle, fontSize: "20px" }}>
                         {type}
@@ -54,7 +54,7 @@ export default function DetailsPage() {
                         {size}
                     </Typography>
                     <Typography variant="h5" sx={{ ...textStyle, fontSize: "16px" }}>
-                        ${price}
+                        {price}
                     </Typography>
                 </Box>
             </Grid>

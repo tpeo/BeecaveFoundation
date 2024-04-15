@@ -1,9 +1,9 @@
 import { MeiliSearch } from 'meilisearch'
 // import exhibitions from './exhibitions.json'
 import { useState } from 'react'
-import {Box, Menu, MenuItem} from '@mui/material'
+import {Box, Menu, MenuItem, TextField, InputAdornment} from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router'
-import SearchBar from "material-ui-search-bar";
 
 export const client = new MeiliSearch({
     host: 'http://localhost:7700',
@@ -55,17 +55,25 @@ export default function SearchBarComponent() {
 
     return (
         <Box>
-            <SearchBar
+            <TextField 
+                variant="standard" 
                 value={value}
-                onChange={(e) => {setValue(e)}}    
+                onChange={(e) => {setValue(e.target.value)}}
                 onKeyDown={(ev) => {
-                    // console.log(`Pressed keyCode ${ev.key}`);
                     if (ev.key === 'Enter') {
                       processSearch(ev);
                       ev.preventDefault();
                     }
                   }}
-            ></SearchBar>
+                InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+            />
+
             <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
