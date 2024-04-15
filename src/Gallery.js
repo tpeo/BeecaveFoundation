@@ -54,7 +54,7 @@ const Gallery = () => {
 
     return (
         <div className="gallery-container">
-            <Grid container spacing={2} direction="row" sx={{ paddingX: "1%" }}>
+            <Grid container spacing={2} direction="row" sx={{ padding: "5%" }}>
                 {artworks &&
                     artworks.map((artwork) => (
                         <Grid item xs={4} key={artwork.imageId}>

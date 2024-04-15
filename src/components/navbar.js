@@ -11,14 +11,11 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 //import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
-import SearchBarComponent from './SearchBar';
+// import SearchBarComponent from './SearchBar';
 
 const pages = [
   { title: 'Home', path: '/' },
-  { title: "What's on", path: '/WhatsOn' },
-  { title: 'Past Exhibitions', path: '/PastExhibitions' },
-  { title: 'Visit', path: '/Visit' },
-  { title: 'Events', path: '/Events' },
+  { title: 'All Exhibitions', path: '/AllExhibitions' },
 ];
 
 function NavigationBar() {
@@ -42,7 +39,7 @@ function NavigationBar() {
 
   return (
     // <ThemeProvider theme={darkTheme}>
-      <AppBar position="static" sx={{ bgcolor: "white" }} >  
+      <AppBar position="static" sx={{ bgcolor: "#F8F9FA", boxShadow:'none'}} >  
         <Container maxWidth="xl">
           <Toolbar disableGutters>
 
@@ -77,28 +74,26 @@ function NavigationBar() {
               >
                 {pages.map((page) => (
                   <MenuItem key={page.title} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center" component={Link} to={page.path}>{page.title}</Typography>
+                    <Typography textAlign="center" sx={{color:'black', textDecoration:'none', fontFamily:"Inter"}} component={Link} to={page.path}>{page.title}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
             </Box>
             <Typography
-              variant="h5"
+              variant="h6"
               noWrap
-              component={Link} // Use Link instead of 'a' tag
-              to="/" // Set your home route here
               sx={{
-                mr: 2,
-                display: { xs: 'flex', md: 'none' },
+                display: { xs: 'none', md: 'flex' },
                 flexGrow: 1,
-                fontFamily: 'monospace',
-                fontWeight: 700,
-                letterSpacing: '.3rem',
-                //color: 'inherit',
+                fontFamily: 'Inter',
+                fontWeight: 500,
+                color: 'black',
                 textDecoration: 'none',
               }}
             >
-              Beecave Foundation
+              <Link to='/' style={{textDecoration:'none', color:'inherit'}}>
+              Bee Cave Arts Foundation Gallery
+              </Link>
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
@@ -106,14 +101,21 @@ function NavigationBar() {
                   key={page.title}
                   component={Link} // Use Link instead of 'a' tag
                   to={page.path}
-                  sx={{ my: 2,  display: 'block' }}
+                  sx={{ 
+                    my: 2,  
+                    color: 'black',
+                    display: 'block',
+                    fontFamily: 'Inter',
+                    textTransform: 'capitalize',
+                    fontWeight: 400,
+                  }}
                 >
                   {page.title}
                 </Button>
               ))}
             
             </Box>
-            <SearchBarComponent/>
+            {/* <SearchBarComponent/> */}
 
           </Toolbar>
         </Container>
