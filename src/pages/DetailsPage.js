@@ -1,40 +1,77 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
+import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
+import { useParams } from "react-router-dom";
 
-export default function DetailsPage(imageId, description){
-  return (
-        <div>
-          <img
-                  src={`https://drive.google.com/thumbnail?id=${imageId}`}
-                  alt={description}
-                  className="gallery-image"
+export default function DetailsPage() {
+    const location = useLocation();
+
+    const queryParams = new URLSearchParams(location.search);
+    const description = queryParams.get("description");
+    const imageId = queryParams.get("imageId");
+    const price = queryParams.get("price");
+    const size = queryParams.get("size");
+    const type = queryParams.get("type");
+
+    return (
+        <Grid container spacing={2} style={{ marginTop: "3%", alignItems: "center" }}>
+            {/* Image */}
+            <Grid item xs={12} md={8} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <CardMedia
+                    component="img"
+                    image={`https://drive.google.com/thumbnail?id=${imageId}`}
+                    alt={description}
+                    sx={{ maxHeight: "70vh", marginLeft: "5%" }}
                 />
-                <h1 >
-                  {description}
-                </h1>
-        </div>
-      )
+            </Grid>
+            {/* Image information */}
+            <Grid item xs={12} md={4} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <Box
+                    sx={{
+                        background: "#F5F5F5",
+                        padding: "20px",
+                        borderRadius: "4px",
+                        height: "80vh",
+                        width: "50vh",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginLeft: "20%",
+                        marginRight: "5%",
+                    }}
+                >
+                    <Typography variant="h5" sx={{ ...titleStyle }}>
+                        {description}
+                    </Typography>
+                    <Typography variant="h5" sx={{ ...textStyle, fontSize: "20px" }}>
+                        {type}
+                    </Typography>
+                    <Typography variant="h5" sx={{ ...textStyle, fontSize: "16px" }}>
+                        {size}
+                    </Typography>
+                    <Typography variant="h5" sx={{ ...textStyle, fontSize: "16px" }}>
+                        ${price}
+                    </Typography>
+                </Box>
+            </Grid>
+        </Grid>
+    );
 }
 
-// import { useParams, useLocation } from 'react-router-dom';
+const titleStyle = {
+    fontFamily: "monospace",
+    fontSize: "32px",
+    fontStyle: "normal",
+    fontWeight: 300,
+    lineHeight: "129%", // 41.28px
+    letterSpacing: "0.64px",
+};
 
-// const DetailsPage = () => {
-//   const { imageId } = useParams();
-//   const { state } = useLocation();
-//   const { description } = state.description;
-
-//   return (
-//     <div>
-//       <img
-//         src={`https://drive.google.com/thumbnail?id=${imageId}`}
-//         alt={description}
-//         className="gallery-image"
-//       />
-//       <h1>{description}</h1>
-//     </div>
-//   );
-// };
-
-// export default DetailsPage;
-
-
+const textStyle = {
+    fontFamily: "monospace",
+    fontStyle: "normal",
+    fontWeight: 300,
+    lineHeight: "129%", // 41.28px
+    letterSpacing: "0.64px",
+};
