@@ -5,13 +5,13 @@ export default function DetailsPage(imageId, description){
   return (
         <div>
           <img
-                  src={`https://drive.google.com/thumbnail?id=${imageId}`}
-                  alt={description}
-                  className="gallery-image"
-                />
-                <h1 >
+              src={`https://drive.google.com/thumbnail?id=${imageId}`}
+              alt={description}
+              className="gallery-image"
+            />
+          {/* <h1 >
                   {description}
-                </h1>
+          </h1> */}
         </div>
       )
 }
