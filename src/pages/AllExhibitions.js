@@ -24,7 +24,7 @@ const extractImageId = (imageUrl) => {
     return id;
 };
 
-const PastExhibitions = () => {
+const AllExhibitions = () => {
     const [exhibitions, setExhibitions] = useState([]);
     const navigate = useNavigate();
 
@@ -61,11 +61,11 @@ const PastExhibitions = () => {
     return (
         <div className="container">
             <NavigationBar />
-            <Typography variant="h5" sx={{ paddingLeft: "5%", paddingY: "3%" }} component="div">
+            <Typography variant="h5" sx={{ paddingLeft: "5%", paddingY: "5%", fontFamily:"Inter" }} component="div">
                 All Exhibition Archive
             </Typography>
 
-            <Grid container spacing={2} direction="row" sx={{ paddingX: "1%" }}>
+            <Grid container spacing={2} direction="row" sx={{ paddingX: "5%" }}>
                 {exhibitions &&
                     exhibitions.map(
                         (exhibition) => (
@@ -79,44 +79,12 @@ const PastExhibitions = () => {
                                 //     />
                                 // </Button>
                                 <Grid item xs={4}>
-                                    <Card
-                                        sx={{
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            alignItems: "left",
-                                            justifyContent: "center",
-                                            paddingX: "5%",
-                                            paddingY: "1%",
-                                            border: "none",
-                                            boxShadow: "none",
-                                        }}
-                                    >
-                                        <Box
-                                            sx={{
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                justifyContent: "space-between",
-                                                pl: 1,
-                                                pb: 1,
-                                            }}
-                                        >
-                                            <a href={`/Exhibition/${exhibition.name}`}>
-                                                {" "}
-                                                {/* Replace "https://example.com" with the actual URL you want to route to */}
-                                                <CardMedia
-                                                    component="img"
-                                                    image={`https://drive.google.com/thumbnail?id=${exhibition.image}`}
-                                                    alt={exhibition.description}
-                                                />
-                                            </a>
-                                        </Box>
-                                        <Typography variant="h5" component="div">
-                                            {exhibition.name}
-                                        </Typography>
-                                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                                            {`${exhibition.start} - ${exhibition.end}`}
-                                        </Typography>
-                                    </Card>
+                                   <ArchiveCard
+                                    key={exhibition.name}
+                                    title={exhibition.name}
+                                    date={`${exhibition.start} - ${exhibition.end}`}
+                                    image={exhibition.image}
+                                ></ArchiveCard>
                                 </Grid>
                             )
                         )
@@ -125,4 +93,4 @@ const PastExhibitions = () => {
         </div>
     );
 };
-export default PastExhibitions;
+export default AllExhibitions;

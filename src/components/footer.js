@@ -6,6 +6,12 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { darkTheme } from "../pages/Home";
 
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import LinkIcon from '@mui/icons-material/Link';
+
 
 export default function Footer() {
     
@@ -15,11 +21,11 @@ export default function Footer() {
                 <Box sx={{ bgcolor: "#000000", paddingLeft:"5%", paddingY:"5%"}}>
                     <Grid container direction="row" spacing={12}>
                         <Grid item xs={4} >
-                            <Typography color="white" sx={{paddingBottom: '2%'}}>Support the Bee Cave Arts Foundation</Typography>
-                            <Typography variant="body2" color="white">Members can join the <Link color="white" to="https://beecavearts.foundation/artist-registry/join-the-artist-registry/"
+                            <Typography variant="h6" sx={{paddingBottom: '2%', color:"white" }}>Support the Bee Cave Arts Foundation</Typography>
+                            <Typography variant="body2" color='white' fontWeight="200">Members can join the <Link style={{color:"white"}} to="https://beecavearts.foundation/artist-registry/join-the-artist-registry/"
                                 >Artists Registry</Link>. Your donation is tax deductive. All donations help!</Typography>
                             <Box display="flex" sx={{ alignItems: 'center', paddingTop: '2%'}}>
-                                <ArrowForwardIcon sx={{color: "white"}}></ArrowForwardIcon>
+                                <ArrowForwardIcon sx={{color: "white", marginRight: '1%'}}></ArrowForwardIcon>
                                 <Link to="" style={{
                                     textDecoration: 'none',
                                     color: 'white', 
@@ -31,12 +37,11 @@ export default function Footer() {
                             </Box>
                         </Grid>
                         <Grid item xs={8}>
-                            <Typography color="white">Connect</Typography>
+                            <Typography color="white" sx={{paddingBottom: '2%'}}>Connect</Typography>
                             <Box display="flex" direction="row" justifyContent="space-between" alignItems="left" width="70%">
-                                <Link color="white">X</Link>
-                                <Link color="white">FACEBOOK</Link>
-                                <Link color="white">YOUTUBE</Link>
-                                <Link color="white">INSTAGRAM</Link>
+                                <Link to="https://www.facebook.com/BeeCaveArts/" style={{color: "white"}}><FacebookIcon/> </Link>
+                                <Link to="https://www.instagram.com/beecavearts" style={{color: "white"}}><InstagramIcon/></Link>
+                                <Link to="https://www.youtube.com/channel/UCtEb_ts24HUOo7xHUUyXImQ/about" style={{color: "white"}}><YouTubeIcon/></Link>
                             </Box>
                         </Grid>
                     </Grid>

@@ -24,20 +24,20 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
     </Box>
 
   const textBlock = <Grid container rowSpacing={12} 
-    sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', paddingLeft: '5%', paddingRight: '10%', height: '100%', flexWrap: 'nowrap' }}>
+    sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: "Inter", justifyContent: 'space-between', paddingLeft: '5%', paddingRight: '10%', height: '100%', flexWrap: 'nowrap' }}>
   {/* <CardContent sx={{ flex: '1 0 auto' }}> */}
     <Grid item >
       <>
         <>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography sx={{ fontSize: 14, fontFamily:"Inter" }} color="black" gutterBottom>
         <CircleIcon sx={{fontSize: 12, color: order ? 'gray' : 'green'}} />
-         {subtitle}
+         {"        " + subtitle}
         </Typography>
         </>
-        <Typography variant="h4" component="div">
+        <Typography variant="h4" component="div" sx={{my: "5%"}}>
           {title}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+        <Typography sx={{ fontSize: 14, fontWeight:'600' }} color="black">
           {date}
         </Typography>
       </>
@@ -45,7 +45,7 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
   {/* </CardContent> */}
   <Grid item>
       <>  
-        <Typography variant="body2" sx={{ marginBottom: '2%'}}>
+        <Typography variant="body2" sx={{ marginBottom: '5%'}}>
           {description}
         </Typography>    
       </>
@@ -55,11 +55,12 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
           textDecoration: 'none',
           color: 'inherit', // This ensures the link inherits the color from its parent
           transition: 'text-decoration 0.3s ease', 
+          fontWeight: 700,
           // Smooth transition for the underline
           }} 
           onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
           onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
-          size="small"> View Information</Link>
+          > View Information</Link>
     </Box>
   </Grid>
 </Grid>
@@ -67,8 +68,8 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
   return (
     <Grid item xs={12}>
 
-    <Card sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between", paddingX: '3%', paddingY: '1%',
-        border: "none", boxShadow: "none", backgroundColor: order ? "#ffffff" : "#f0f0f0"}}>
+    <Card sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between", paddingX: '5%', paddingY: '5%',
+        border: "none", boxShadow: "none", backgroundColor: "#ffffff"}}>
        {
         (order) ? 
         <>

@@ -25,7 +25,7 @@ const extractImageId = (imageUrl) => {
 export const darkTheme = createTheme({
   typography: {
       fontFamily: [
-        'DM Sans',
+        'Inter',
         'sans-serif',
       ].join(','),
     },
@@ -33,7 +33,7 @@ export const darkTheme = createTheme({
       MuiCssBaseline: {
         styleOverrides: `
           @font-face {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-style: normal;
             font-display: swap;
             font-weight: 400;
@@ -66,6 +66,7 @@ const Home = () => {
             console.log(data.valueRanges[0].values)
             if (data.valueRanges[0].values.length > 0) {
               const exhibitions = data.valueRanges[0].values.map((e, index) => {
+                console.log(e[0])
                 return {
                   id: index,
                   name: e[0],
@@ -83,7 +84,7 @@ const Home = () => {
               const arch = exhibitions.filter(x => !res.includes(x))
               setArchive(arch)
               //update search json here {id, name}
-              updateSearch(exhibitions)
+              // updateSearch(exhibitions)
             } else {
               console.log('No data found.');
             }
@@ -97,7 +98,7 @@ const Home = () => {
 
     return (
         <ThemeProvider theme={darkTheme}>
-        <div className='container'>
+        <div className='container'> 
           <NavigationBar/>
             <Card>
               <div style={{ position: "relative" }}>
@@ -112,11 +113,12 @@ const Home = () => {
                   }} variant='h3'> Bee Cave Arts Foundation</Typography>
               </div>
             </Card>
-            <Box sx={{ backgroundColor: "#f0f0f0"}}>
+            <Box sx={{ background:'linear-gradient(180deg, #FFF 0%, rgba(249, 249, 249, 0.59) 100%), #FFF;'}}>
               <Typography variant='h5' sx={{weight:'300', paddingY: '5%', paddingRight: '40%', paddingLeft: '5%'}}>
                 Established in 2010, Bee Cave Arts Foundation invigorates the community and visitor experience through diverse public art initiatives, including the Bee Cave Sculpture Park, The Hive art center, and ongoing exhibitions and classes.
               </Typography>
             </Box>
+            <Box sx={{ background:'linear-gradient(180deg, #FFF 0%, rgba(249, 249, 249, 0.59) 100%), #FFF;'}}>
 
             {
               (exhibitions.length > 0) && (
@@ -135,7 +137,6 @@ const Home = () => {
               )
             }
             
-            <Typography variant='h6' sx={{paddingLeft: '5%'}}>Upcoming Exhibitions</Typography>
             <Grid container>
             {
                 (upcoming) && (
@@ -153,6 +154,7 @@ const Home = () => {
                 )
             }
             </Grid>
+            </Box>
             <Box>
             <Typography variant='h6' sx={{paddingLeft: '5%', paddingY: '3%'}}>Exhibitions Archive</Typography>
               { (archive.length > 0) && (
@@ -189,11 +191,12 @@ const Home = () => {
                     textDecoration: 'none',
                     color: 'inherit', // This ensures the link inherits the color from its parent
                     transition: 'text-decoration 0.3s ease', 
+                    fontWeight:700,
                     // Smooth transition for the underline
                     }} 
                     onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
                     onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
-                    size="small"> Visit Archive</Link>
+                    > Visit Archive</Link>
               </Box>
             </Box>
         <Footer/>

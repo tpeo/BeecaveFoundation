@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
 import { useParams } from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function DetailsPage() {
     const location = useLocation();
@@ -14,6 +15,8 @@ export default function DetailsPage() {
     const type = queryParams.get("type");
 
     return (
+        <>
+        <CloseIcon sx={{ position: "absolute", top: "2%", right: "2%", fontSize: "40px", color:"#666666", cursor: "pointer" }} onClick={() => window.history.back()} />
         <Grid container spacing={2} style={{ marginTop: "3%", alignItems: "center" }}>
             {/* Image */}
             <Grid item xs={12} md={8} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -56,22 +59,24 @@ export default function DetailsPage() {
                 </Box>
             </Grid>
         </Grid>
+        </>
     );
 }
 
 const titleStyle = {
-    fontFamily: "monospace",
+    fontFamily: "Inter",
     fontSize: "32px",
     fontStyle: "normal",
     fontWeight: 300,
     lineHeight: "129%", // 41.28px
     letterSpacing: "0.64px",
+    my: "5%",
 };
 
 const textStyle = {
-    fontFamily: "monospace",
+    fontFamily: "Inter",
     fontStyle: "normal",
     fontWeight: 300,
-    lineHeight: "129%", // 41.28px
+    lineHeight: "150%", // 41.28px
     letterSpacing: "0.64px",
 };
