@@ -42,7 +42,7 @@ function NavigationBar() {
 
   return (
     // <ThemeProvider theme={darkTheme}>
-      <AppBar position="static" sx={{ bgcolor: "green" }} >  
+      <AppBar position="static" sx={{ bgcolor: "white" }} >  
         <Container maxWidth="xl">
           <Toolbar disableGutters>
 
