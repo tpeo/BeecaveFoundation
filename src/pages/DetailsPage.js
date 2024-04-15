@@ -14,50 +14,64 @@ export default function DetailsPage() {
     const type = queryParams.get("type");
 
     return (
-        <Grid container spacing={2} style={{ alignItems: "center", height: "60vh" }}>
+        <Grid container spacing={2} style={{ marginTop: "3%", alignItems: "center" }}>
             {/* Image */}
-            <Grid item xs={12} md={8} >
+            <Grid item xs={12} md={8} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <CardMedia
                     component="img"
                     image={`https://drive.google.com/thumbnail?id=${imageId}`}
                     alt={description}
-                    sx={{ maxWidth: "100%" }}
+                    sx={{ maxHeight: "70vh", marginLeft: "5%" }}
                 />
             </Grid>
             {/* Image information */}
-            <Grid item xs={12} md={4} style={{ alignItems: "center" }}>
+            <Grid item xs={12} md={4} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <Box
                     sx={{
                         background: "#F5F5F5",
                         padding: "20px",
                         borderRadius: "4px",
-                        height: "60vh",
+                        height: "80vh",
+                        width: "50vh",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        marginLeft: "20%",
+                        marginRight: "5%",
                     }}
                 >
-                    <Typography variant="h5" sx={{ marginBottom: "10px" }}>
-                        Description:
-                    </Typography>
-                    <Typography variant="body1" sx={{ marginBottom: "20px" }}>
+                    <Typography variant="h5" sx={{ ...titleStyle }}>
                         {description}
                     </Typography>
-                    <Typography variant="h5" sx={{ marginBottom: "10px" }}>
-                        Price:
+                    <Typography variant="h5" sx={{ ...textStyle, fontSize: "20px" }}>
+                        {type}
                     </Typography>
-                    <Typography variant="body1" sx={{ marginBottom: "20px" }}>
-                        {price}
-                    </Typography>
-                    <Typography variant="h5" sx={{ marginBottom: "10px" }}>
-                        Size:
-                    </Typography>
-                    <Typography variant="body1" sx={{ marginBottom: "20px" }}>
+                    <Typography variant="h5" sx={{ ...textStyle, fontSize: "16px" }}>
                         {size}
                     </Typography>
-                    <Typography variant="h5" sx={{ marginBottom: "10px" }}>
-                        Type:
+                    <Typography variant="h5" sx={{ ...textStyle, fontSize: "16px" }}>
+                        ${price}
                     </Typography>
-                    <Typography variant="body1">{type}</Typography>
                 </Box>
             </Grid>
         </Grid>
     );
 }
+
+const titleStyle = {
+    fontFamily: "monospace",
+    fontSize: "32px",
+    fontStyle: "normal",
+    fontWeight: 300,
+    lineHeight: "129%", // 41.28px
+    letterSpacing: "0.64px",
+};
+
+const textStyle = {
+    fontFamily: "monospace",
+    fontStyle: "normal",
+    fontWeight: 300,
+    lineHeight: "129%", // 41.28px
+    letterSpacing: "0.64px",
+};

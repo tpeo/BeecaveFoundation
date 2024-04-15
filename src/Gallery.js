@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ResponsiveMasonry from "react-responsive-masonry";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import "./Gallery.css";
-import Button from "react-bootstrap/Button";
-
 import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
 
 const spreadsheetId = "1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w"; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c';
@@ -41,8 +37,9 @@ const Gallery = () => {
                         size: row[7],
                         imageId: extractImageId(row[8]),
                         type: row[9],
+                        approved: row[10], // Adding the "Approved" column
                         key: index.toString(),
-                    }));
+                    })).filter(artwork => artwork.approved === "Yes"); // Filter artworks based on "Approved" column
                     setArtworks(fetchedArtworks);
                 } else {
                     console.log("No data found.");
