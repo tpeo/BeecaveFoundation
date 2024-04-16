@@ -84,7 +84,7 @@ const Home = () => {
               const arch = exhibitions.filter(x => !res.includes(x))
               setArchive(arch)
               //update search json here {id, name}
-              updateSearch(exhibitions)
+              // updateSearch(exhibitions)
             } else {
               console.log('No data found.');
             }

@@ -115,7 +115,7 @@ function NavigationBar() {
               ))}
             
             </Box>
-            <SearchBarComponent/>
+            {/* <SearchBarComponent/> */}
 
           </Toolbar>
         </Container>
