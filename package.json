@@ -25,9 +25,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start:service1": "npm run start",
-    "start:service2": "meilisearch.exe --master-key=\"aSampleMasterKey\"",
-    "start": "npm-run-all start:service2",
+    "start:service2": "react-scripts start",
+    "start:service1": "meilisearch.exe --master-key=\"aSampleMasterKey\"",
+    "start": "concurrently \"npm run start:service1\" \"npm run start:service2\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

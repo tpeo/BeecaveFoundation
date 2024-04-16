@@ -84,19 +84,22 @@ const Gallery = () => {
                                     <Link
                                     to={`/details/${artwork.imageId}?title=${encodeURIComponent(artwork.title)}&imageId=${encodeURIComponent(artwork.imageId)}&price=${encodeURIComponent(artwork.price)}&size=${encodeURIComponent(artwork.size)}&type=${encodeURIComponent(artwork.type)}`}
                                     className="gallery-item"
-                                    style={{textDecoration:'none', color:'inherit'}}
+                                    style={{textDecoration:'none', color:'black'}}
                                 >
                                         <CardMedia
                                             component="img"
                                             image={`https://drive.google.com/thumbnail?id=${artwork.imageId}`}
                                             alt={artwork.description}
                                         />
-                                        <Typography sx={{my: "2%"}}>{artwork.title}</Typography>
+                                      
 
                                     
                                 </Link>
+                                
                                 </Box>
+                                <Typography sx={{color:'black'}}>{artwork.title}</Typography>
                             </Card>
+                            
                         </Grid>
                     ))}
             </Grid>

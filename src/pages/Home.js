@@ -11,7 +11,7 @@ import currentexhibitions from '../components/exhibitions.json'
 import { client, index } from '../components/SearchBar.js';
 
 const spreadsheetId = '1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w'; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
-const ranges = 'B2:F100'; // might need to set this
+const ranges = 'B2:F5'; // might need to set this
 const apiKey = process.env.REACT_APP_API_KEY;
 const ROWS= 'ROWS';
 const sheetTitle = 'Exhibitions';
