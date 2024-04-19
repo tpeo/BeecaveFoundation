@@ -168,20 +168,24 @@ const Home = () => {
                     ></ArchiveCard>
                   </Grid>
                   <Grid item xs={4}>
+                  { (archive.length > 1) && (
                     <ArchiveCard
                         key={archive[2].name}
                         title={archive[2].name}
                         date={`${archive[2].start} - ${archive[2].end}`}
                         image={archive[2].image}
                     ></ArchiveCard>
+                  )}
                   </Grid>
                   <Grid item xs={4}>
+                  { (archive.length > 2) && (
                     <ArchiveCard
                         key={archive[3].name}
                         title={archive[3].name}
                         date={`${archive[3].start} - ${archive[3].end}`}
                         image={archive[3].image}
                     ></ArchiveCard>
+                  )}
                   </Grid>
               </Grid>
               )}

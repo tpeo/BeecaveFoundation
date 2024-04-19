@@ -1,20 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
 
-const spreadsheetId = "1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w"; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c';
-const ranges = `2:100`;
-const apiKey = process.env.REACT_APP_API_KEY;
-const ROWS = "ROWS";
-
-const extractImageId = (imageUrl) => {
-    const parts = imageUrl.split("id=");
-    const id = parts[1];
-    return id;
-};
 const spreadsheetId = "1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w"; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c';
 const ranges = `2:100`;
 const apiKey = process.env.REACT_APP_API_KEY;
@@ -30,9 +17,7 @@ const Gallery = () => {
     const [artworks, setArtworks] = useState([]);
     const { sheetTitle } = useParams();
     const navigate = useNavigate();
-    const [artworks, setArtworks] = useState([]);
-    const { sheetTitle } = useParams();
-    const navigate = useNavigate();
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -67,8 +52,7 @@ const Gallery = () => {
 
         fetchData();
     }, []);
-        fetchData();
-    }, []);
+
 
     return (
         <div className="gallery-container">
