@@ -12,11 +12,11 @@ import { Link } from "react-router-dom";
 import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
 //import BootstrapCard from "../components/BootstrapCard.js";
 
-const spreadsheetId = "1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w"; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c';
-const ranges = "B2:F3"; // might need to set this
+const spreadsheetId = '1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w'; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c'; 
+const ranges = 'B2:G6'; // might need to set this
 const apiKey = process.env.REACT_APP_API_KEY;
-const ROWS = "ROWS";
-const sheetTitle = "Exhibitions";
+const ROWS= 'ROWS';
+const sheetTitle = 'Exhibitions';
 
 const extractImageId = (imageUrl) => {
     const parts = imageUrl.split("id=");
@@ -31,22 +31,26 @@ const AllExhibitions = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(
-                    `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?ranges=${sheetTitle}!${ranges}&key=${apiKey}&majorDimension=${ROWS}`
-                );
-                const data = await response.json();
-                console.log(data.valueRanges[0].values);
-                if (data.valueRanges[0].values.length > 0) {
-                    const exhibitions = data.valueRanges[0].values.map((e, index) => {
-                        return {
-                            name: e[0],
-                            start: e[1],
-                            end: e[2],
-                            image: extractImageId(e[3]),
-                            description: e[4],
-                        };
-                    });
-                    setExhibitions(exhibitions);
+              const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?ranges=${sheetTitle}!${ranges}&key=${apiKey}&majorDimension=${ROWS}`);
+              const data = await response.json();
+              console.log(data.valueRanges[0].values)
+              if (data.valueRanges[0].values.length > 0) {
+                const exhibitions = data.valueRanges[0].values.map((e, index) => {
+                  console.log(e[0])
+                  console.log(e[5])
+                  return {
+                    id: index,
+                    name: e[0],
+                    start: e[1],
+                    end: e[2],
+                    image: extractImageId(e[3]),
+                    description: e[4],
+                    approved: e[5],
+                    key: index.toString(),
+                  }
+                }).filter(exhibition => exhibition.approved === "Yes");
+                console.log(exhibitions);
+                setExhibitions(exhibitions);
                 } else {
                     console.log("No data found.");
                 }
@@ -61,7 +65,7 @@ const AllExhibitions = () => {
     return (
         <div className="container">
             <NavigationBar />
-            <Typography variant="h5" sx={{ paddingLeft: "5%", paddingY: "5%", fontFamily:"Inter" }} component="div">
+            <Typography variant="h5" sx={{ paddingLeft: "5%", paddingY: "5%", fontFamily: "Inter" }} component="div">
                 All Exhibition Archive
             </Typography>
 
@@ -79,12 +83,12 @@ const AllExhibitions = () => {
                                 //     />
                                 // </Button>
                                 <Grid item xs={4}>
-                                   <ArchiveCard
-                                    key={exhibition.name}
-                                    title={exhibition.name}
-                                    date={`${exhibition.start} - ${exhibition.end}`}
-                                    image={exhibition.image}
-                                ></ArchiveCard>
+                                    <ArchiveCard
+                                        key={exhibition.name}
+                                        title={exhibition.name}
+                                        date={`${exhibition.start} - ${exhibition.end}`}
+                                        image={exhibition.image}
+                                    ></ArchiveCard>
                                 </Grid>
                             )
                         )
