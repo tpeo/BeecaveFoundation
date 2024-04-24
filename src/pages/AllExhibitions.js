@@ -46,7 +46,7 @@ const AllExhibitions = () => {
                     image: extractImageId(e[3]),
                     description: e[4],
                     approved: e[5],
-                    key: index.toString(),
+                    // key: index.toString(),
                   }
                 }).filter(exhibition => exhibition.approved === "Yes");
                 console.log(exhibitions);

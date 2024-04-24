@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
 
 const spreadsheetId = "1FbaWozLti_PIm2oZWX8rrhWTEr5Ty5KY5Z9LwzFf27w"; //'14INJd2S6B9SOqxl2FnBZT1_EOp5NEe6tWvPaCsWDp0c';
-const ranges = `2:100`;
+const ranges = `2:1000`;
 const apiKey = process.env.REACT_APP_API_KEY;
 const ROWS = "ROWS";
 
@@ -30,6 +30,7 @@ const Gallery = () => {
                 );
                 const data = await response.json();
                 console.log(data);
+                var i=0;
                 if (data.valueRanges && data.valueRanges[0].values) {
                     const fetchedArtworks = data.valueRanges[0].values.map((row, index) => ({
                         imageUrl: extractImageId(row[8]),
@@ -39,7 +40,8 @@ const Gallery = () => {
                         imageId: extractImageId(row[8]),
                         type: row[9],
                         approved: row[10], // Adding the "Approved" column
-                        key: index.toString(),
+                        rowNum:i++,
+                        // key: index.toString(),
                     })).filter(artwork => artwork.approved === "Yes"); // Filter artworks based on "Approved" column
                     setArtworks(fetchedArtworks);
                 } else {
@@ -59,7 +61,8 @@ const Gallery = () => {
             <Grid container spacing={2} direction="row" sx={{ padding: "5%" }}>
                 {artworks &&
                     artworks.map((artwork) => (
-                        <Grid item xs={4} key={artwork.imageId}>
+                        <Grid item xs={4} key={artwork.rowNum }>
+                            
                             <Card
                                 sx={{
                                     display: "flex",
