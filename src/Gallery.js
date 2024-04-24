@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Box, Grid, Typography, Card, CardMedia } from "@mui/material";
 
@@ -17,7 +17,31 @@ const Gallery = () => {
     const [artworks, setArtworks] = useState([]);
     const { sheetTitle } = useParams();
     const navigate = useNavigate();
+    // const [hovered, setHovered] = useState(null);
+    const [hoverX, setHoverX] = useState({});
+    const elementRef = useRef([]);
 
+    const handleMouseEnter = (event, index) => {
+        const rect = elementRef.current.getBoundingClientRect();
+        console.log(rect)
+        setHoverX({
+            index: index,
+            width: rect.width,
+            height: rect.height
+        });
+
+        // setHovered(index);
+    };
+
+    const handleMouseLeave = () => {
+        // setHoverX({
+        //     index: -1,
+        //     x: 0,
+        //     y: 0,
+        //     width: 0,
+        //     height: 0
+        // });  
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,6 +66,7 @@ const Gallery = () => {
                         key: index.toString(),
                     })).filter(artwork => artwork.approved === "Yes"); // Filter artworks based on "Approved" column
                     setArtworks(fetchedArtworks);
+
                 } else {
                     console.log("No data found.");
                 }
@@ -58,8 +83,8 @@ const Gallery = () => {
         <div className="gallery-container">
             <Grid container spacing={2} direction="row" sx={{ padding: "5%" }}>
                 {artworks &&
-                    artworks.map((artwork) => (
-                        <Grid item xs={4} key={artwork.imageId}>
+                    artworks.map((artwork, index) => (
+                        <Grid item xs={4} key={`${artwork.imageId}_${index}`}>
                             <Card
                                 sx={{
                                     display: "flex",
@@ -74,7 +99,9 @@ const Gallery = () => {
                                 }}
                             >
                                 <Box
+                                    className="gallery-item"
                                     sx={{
+                                        position: "relative",
                                         display: "flex",
                                         flexDirection: "column",
                                         justifyContent: "space-between",
@@ -85,20 +112,30 @@ const Gallery = () => {
                                     
                                     <Link
                                     to={`/details/${artwork.imageId}?title=${encodeURIComponent(artwork.title)}&imageId=${encodeURIComponent(artwork.imageId)}&price=${encodeURIComponent(artwork.price)}&size=${encodeURIComponent(artwork.size)}&type=${encodeURIComponent(artwork.type)}`}
-                                    className="gallery-item"
                                     style={{textDecoration:'none', color:'black'}}
                                 >
                                         <CardMedia
                                             component="img"
                                             image={`https://drive.google.com/thumbnail?id=${artwork.imageId}`}
                                             alt={artwork.description}
-                                        />
-                                      
+                                            key={index}
+                                            onMouseEnter={(event) => handleMouseEnter(event, index)}
+                                            onMouseLeave={handleMouseLeave}
+                                            ref={elementRef}
+                                        />      
+                                {hoverX.index === index && (
+                                    <Box class="overlay" 
+                                    style={{position: 'absolute', top: 0, width: hoverX.width, height: hoverX.height, 
+                                            alignItems: 'center', display: 'flex', justifyContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.7)', zIndex: 1 }}>
+                                        <Typography sx={{color:'white'}}>{artwork.title}</Typography>
+                                    </Box>
+                                )}
 
                                     
                                 </Link>
                                 
                                 </Box>
+
                                 <Typography sx={{color:'black'}}>{artwork.title}</Typography>
                             </Card>
                             
