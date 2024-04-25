@@ -58,6 +58,7 @@ const Home = () => {
     const [upcoming, setUpcoming] = useState([]);
     const [archive, setArchive] = useState([]);
 
+
     useEffect(() => {
         const fetchData = async () => {
           try {
