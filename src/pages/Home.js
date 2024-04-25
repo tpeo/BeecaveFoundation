@@ -110,12 +110,13 @@ const Home = () => {
                       width: '100%',
                       height: '100%',
                       backgroundColor: 'rgba(0, 0, 0, 0.5)'}} ></div>
-                  <Typography sx={{position: "absolute", color: "white",bottom: "5%",left: "5%", width: '25%'
+                  <Typography sx={{position: "absolute", color: "white",bottom: "5%",left: "5%", fontSize: '5vw', width: '25%'
                   }} variant='h3'> Bee Cave Arts Foundation</Typography>
               </div>
             </Card>
             <Box sx={{ background:'linear-gradient(180deg, #FFF 0%, rgba(249, 249, 249, 0.59) 100%), #FFF;'}}>
-              <Typography variant='h5' sx={{weight:'300', paddingY: '5%', paddingRight: '40%', paddingLeft: '5%'}}>
+
+              <Typography variant='h5' sx={{weight:'300', paddingY: '5%', paddingLeft: '5%'}}>
                 Established in 2010, Bee Cave Arts Foundation invigorates the community and visitor experience through diverse public art initiatives, including the Bee Cave Sculpture Park, The Hive art center, and ongoing exhibitions and classes.
               </Typography>
             </Box>
@@ -159,7 +160,7 @@ const Home = () => {
             <Box>
             <Typography variant='h6' sx={{paddingLeft: '5%', paddingY: '3%'}}>Exhibitions Archive</Typography>
               { (archive.length > 0) && (
-                <Grid container spacing={2} direction="row" sx={{ paddingX: '3%' }}>
+                <Grid container spacing={{ xs: 1, md: 3 }} columns={{ xs: 4, md: 12}} direction="row" sx={{ paddingX: '3%' }}>
                   <Grid item xs={4}>
                     <ArchiveCard
                         key={archive[1].name}

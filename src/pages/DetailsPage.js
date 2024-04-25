@@ -16,7 +16,7 @@ export default function DetailsPage() {
 
     return (
         <>
-        <CloseIcon sx={{ position: "absolute", top: "2%", right: "2%", fontSize: "40px", color:"#666666", cursor: "pointer" }} onClick={() => window.history.back()} />
+        <CloseIcon sx={{  position: "sticky", marginLeft: "95%", fontSize: "5vw", color:"#666666", cursor: "pointer" }} onClick={() => window.history.back()} />
         <Grid container spacing={2} style={{ marginTop: "3%", alignItems: "center" }}>
             {/* Image */}
             <Grid item xs={12} md={8} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -42,6 +42,10 @@ export default function DetailsPage() {
                         alignItems: "center",
                         marginLeft: "20%",
                         marginRight: "5%",
+                        position: "sticky",
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
                     }}
                 >
                     <Typography variant="h5" sx={{ ...titleStyle }}>

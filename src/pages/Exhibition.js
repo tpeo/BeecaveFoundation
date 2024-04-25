@@ -67,22 +67,18 @@ const Exhibition = () => {
                   }} variant='h3'>{exhibition.name}</Typography>
               </div>
         </Card>
-        <Box
-            sx={{
-                display: 'grid',
-                columnGap: 3,
-                rowGap: 1,
-                gridTemplateColumns: '2fr 1fr',
-                py: "5%" 
-            }}
-            >
+        <Grid container  spacing={{ xs: 2, sm: 2, md: 3 }} columns={{ xs: 4, sm: 4, md: 12 }} style={{ marginTop: "3%", alignItems: "center" }}>
+           <Grid item xs={4} sm={8}>
             <Typography variant='body2' sx={{fontWeight:'500', px: "5%"}}>
                             {exhibition.description}
             </Typography>
+            </Grid>
+            <Grid item xs={4} sm={4}>
             <Typography variant='body2' sx={{fontWeight:'500' , pl: "5%"}}>
                             <strong>Date:</strong><br/> {exhibition.start} - {exhibition.end}
             </Typography>
-        </Box>
+            </Grid>
+        </Grid>
         
  
 

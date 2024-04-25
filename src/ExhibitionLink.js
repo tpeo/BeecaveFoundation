@@ -70,28 +70,30 @@ export default function ExhibitionLink({subtitle, title, date, description, imag
 
     <Card sx={{ display: 'flex', flexDirection: 'row', justifyContent: "space-between", paddingX: '5%', paddingY: '5%',
         border: "none", boxShadow: "none", backgroundColor: "#ffffff"}}>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
        {
         (order) ? 
         <>
-          <Grid item xs={8}> 
+          <Grid item xs={8} order = {{xs: 1, sm: 1, md: 2 }}> 
             {imageBlock}
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={4} order = {{xs: 2, sm: 2, md: 1 }} >
             {textBlock}
           </Grid>
         </>
 
            : <>
-          <Grid item xs={4}> 
+          <Grid item xs={4} order = {{xs: 2, sm: 2, md: 1 }}> 
             {textBlock}
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={8} order = {{xs: 1, sm: 1, md: 2 }}>
             {imageBlock}
           </Grid>
            </>
 
        }
        
+       </Grid>
       </Card>
       </Grid>
 

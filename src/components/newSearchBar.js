@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import {IconButton,  TextField} from "@mui/material"
+import SearchIcon from '@mui/icons-material/Search';
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -85,13 +87,16 @@ const SearchBar = () => {
 
     return (
         <form onSubmit={handleSearch}>
-            <input
+            <TextField
+                style ={{marginTop: "3%" }}
                 type="text"
-                placeholder="Search exhibitions or artworks..."
+                size='small'
+                variant="standard"
+                placeholder="Search Exhibitions"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button type="submit">Search</button>
+            <IconButton style ={{height: '2%'}} size='large' variant="text" type="submit"><SearchIcon/></IconButton>
         </form>
     );
 };
