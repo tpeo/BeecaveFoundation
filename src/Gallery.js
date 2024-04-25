@@ -83,7 +83,7 @@ const Gallery = () => {
 
     return (
         <div className="gallery-container">
-            <Grid container spacing={2} direction="row" sx={{ padding: "5%" }}>
+            <Grid container  spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} direction="row" sx={{ padding: "5%" }}>
                 {artworks &&
                     artworks.map((artwork, index) => (
                         <Grid item xs={4} key={`${artwork.imageId}_${index}`}>
@@ -137,8 +137,6 @@ const Gallery = () => {
                                 </Link>
                                 
                                 </Box>
-
-                                <Typography sx={{color:'black'}}>{artwork.title}</Typography>
                             </Card>
                             
                         </Grid>

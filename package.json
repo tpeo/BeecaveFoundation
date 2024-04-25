@@ -14,6 +14,7 @@
     "bootstrap": "^5.3.3",
     "material-ui-search-bar": "^1.0.1",
     "meilisearch": "^0.38.0",
+    "minisearch": "^6.3.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.0",
     "react-dom": "^18.2.0",
@@ -25,9 +26,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start:service2": "react-scripts start",
-    "start:service1": "meilisearch.exe --master-key=\"aSampleMasterKey\"",
-    "start": "concurrently \"npm run start:service1\" \"npm run start:service2\"",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -5,6 +5,7 @@ import {Box, Menu, MenuItem, TextField, InputAdornment} from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router'
 
+
 export const client = new MeiliSearch({
     host: 'http://localhost:7700',
     apiKey: 'aSampleMasterKey'
@@ -22,6 +23,8 @@ async function search(query) {
 
     return search.hits
 }
+
+
 
 export default function SearchBarComponent() {
     const [value, setValue] = useState("");
@@ -52,6 +55,8 @@ export default function SearchBarComponent() {
         if (results.length == 0) handleClose()
         // console.log(event.currentTarget)
     }
+
+
 
     return (
         <Box>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import {IconButton,  TextField} from "@mui/material"
+import SearchIcon from '@mui/icons-material/Search';
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -58,23 +60,30 @@ const SearchBar = () => {
                     const artwork = artworks[j];
                     console.log("artwork " + artwork);
                     if (artwork[5].toLowerCase() === searchQuery.toLowerCase()) {
-                      var [blank, email, phone, firstName, lastName, title, price, size, imageId, type, approved] = artwork;
-                    //   console.log(title + artwork[5]);
-                    //   console.log(price + artwork[6]);
-                    //   console.log(imageId + artwork[8]);
-                      imageId= extractImageId(imageId);
-                      //const detailsParams = `?title=${encodeURIComponent(title)}&imageId=${encodeURIComponent(imageId)}&price=${encodeURIComponent(price)}&size=${encodeURIComponent(size)}&type=${encodeURIComponent(type)}&approved=${encodeURIComponent(approved)}`;
-                      navigate(`/details/${imageId}?title=${encodeURIComponent(title)}&imageId=${encodeURIComponent(imageId)}&price=${encodeURIComponent(price)}&size=${encodeURIComponent(size)}&type=${encodeURIComponent(type)}`);
-                      foundmatchingthing = true;
-                      break; 
+                        var [blank, email, phone, firstName, lastName, title, price, size, imageId, type, approved] =
+                            artwork;
+                        //   console.log(title + artwork[5]);
+                        //   console.log(price + artwork[6]);
+                        //   console.log(imageId + artwork[8]);
+                        imageId = extractImageId(imageId);
+                        //const detailsParams = `?title=${encodeURIComponent(title)}&imageId=${encodeURIComponent(imageId)}&price=${encodeURIComponent(price)}&size=${encodeURIComponent(size)}&type=${encodeURIComponent(type)}&approved=${encodeURIComponent(approved)}`;
+                        navigate(
+                            `/details/${imageId}?title=${encodeURIComponent(title)}&imageId=${encodeURIComponent(
+                                imageId
+                            )}&price=${encodeURIComponent(price)}&size=${encodeURIComponent(
+                                size
+                            )}&type=${encodeURIComponent(type)}`
+                        );
+                        foundmatchingthing = true;
+                        break;
                     }
-                  }
+                }
                 // console.log("matchingArtwork " + matchingArtwork);
 
                 // if (matchingArtwork) {
                 //     navigate(`/details/${artwork.imageId}?title=${encodeURIComponent(artwork.title)}&imageId=${encodeURIComponent(artwork.imageId)}&price=${encodeURIComponent(artwork.price)}&size=${encodeURIComponent(artwork.size)}&type=${encodeURIComponent(artwork.type)}`);
                 //     foundmatchingthing = true;
-                //     return; 
+                //     return;
                 // }
             }
             if (!foundmatchingthing) {
@@ -85,13 +94,17 @@ const SearchBar = () => {
 
     return (
         <form onSubmit={handleSearch}>
-            <input
+            <TextField
+                style ={{marginTop: "3%" }}
                 type="text"
-                placeholder="Search exhibitions or artworks..."
+                size='small'
+                variant="standard"
+                placeholder="Search Exhibitions"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                className="search-input"
             />
-            <button type="submit">Search</button>
+            <IconButton style ={{height: '2%'}} size='large' variant="text" type="submit"><SearchIcon/></IconButton>
         </form>
     );
 };
