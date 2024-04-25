@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 } */
+
+.search-button {
+    background-image: url("../public/images/search_icon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-left: 10px;
+    text-indent: -9999px;
+    background-color: transparent;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    transform: translateX(-150%);
+    border: none;
+}
+
+.search-input {
+    width: 250px;
+    padding: 6px 20px;
+    border-radius: 12px;
+    background-color: white;
+    box-sizing: border-box;
+}
